@@ -28,7 +28,6 @@ public class Main extends ListenerAdapter  {
     // MessageReceivedEvent 메세지를 읽어오는 event 추정
     public void onMessageReceived(MessageReceivedEvent event)
     {
-        Guild guild = event.getGuild();
         if (event.isFromType(ChannelType.PRIVATE))
         {
             System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
@@ -47,9 +46,11 @@ public class Main extends ListenerAdapter  {
             fileRead fileRead = new fileRead();
             fileRead.command(event);
 
+            eventCheck eventCheck = new eventCheck();
+
+            if(event.getMessage().getContentDisplay().equals("이벤트 목록")) {
+               /* eventCheck.eventList(event);*/
+            }
         }
-
     }
-
-
 }
