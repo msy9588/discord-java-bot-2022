@@ -35,11 +35,6 @@
   "재획알림": "https://www.inven.co.kr/board/maple/2304/20872?name=nicname&keyword=%EC%86%8D%EC%A0%90%EB%93%B1",
   "사다리": "https://search.naver.com/search.naver?where=nexearch&query=%EB%84%A4%EC%9D%B4%EB%B2%84+%EC%82%AC%EB%8B%A4%EB%A6%AC&ie=utf8&sm=tab_she&qdt=0",
   "사다리타기": "https://search.naver.com/search.naver?where=nexearch&query=%EB%84%A4%EC%9D%B4%EB%B2%84+%EC%82%AC%EB%8B%A4%EB%A6%AC&ie=utf8&sm=tab_she&qdt=0",
-  "단톡": "https://open.kakao.com/o/gqi443z",
-  "오픈채팅": "https://open.kakao.com/o/gqi443z",
-  "길드단톡": "https://open.kakao.com/o/gqi443z",
-  "참여코드": "1394",
-  "단톡참여코드": "1394",
   "플래그": "https://media.discordapp.net/attachments/845047490134409246/911860712018702356/unknown.png?width=660&height=207",
   "리멘": "https://media.discordapp.net/attachments/871699330011131935/926915725627621386/7fb78584a5f8b27c.png?width=521&height=212",
   "농장조합": "http://wachan.me/farm.php",
@@ -47,5 +42,6 @@
   "몬라조합": "http://wachan.me/farm.php",
   "사냥터계산기": "https://icepeng.github.io/maple-calc/grinding",
   "진동아델": "https://github.com/dudqls5271",
-  "github": "https://github.com/dudqls5271/discord-java-bot-2022"
+  "github": "https://github.com/dudqls5271/discord-java-bot-2022",
+  "커멘드": "https://github.com/dudqls5271/discord-java-bot-2022"
 }

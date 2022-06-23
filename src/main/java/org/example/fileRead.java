@@ -21,6 +21,9 @@ public class fileRead {
             if(keyJSON != null) {
                 event.getChannel().sendMessage(keyJSON).queue();
             }
+//            if(event.getMessage().getContentDisplay().equals("커멘드")) {
+//                event.getAuthor().openPrivateChannel().flatMap(channel -> channel.sendMessage("")).queue();
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
