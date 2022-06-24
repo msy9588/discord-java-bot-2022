@@ -38,14 +38,15 @@ public class eventCheck extends Main {
                 Date date = new Date(cal1.getTimeInMillis());
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
                 String strNowDate = simpleDateFormat.format(date);
-
-                sb.append("[이벤트] \u001B[1;5m").append(text_event).append("\u001B[0m / \u001B[1;35m종료일 : ").append(strNowDate).append("(").append(date_event).append(")\u001B[0m").append("\n").append("\u001B[1;36m").append(eventURL2).append("\u001B[0m").append("\n \n");
+                if(!text_event.equals("썬데이 메이플")) {
+                    sb.append("```ansi\n " + "> [이벤트] \u001B[1;5m").append(text_event).append("\u001B[0m / \u001B[1;35m종료일 : ").append(strNowDate).append("(").append(date_event).append(")\u001B[0m ```").append("<").append(eventURL2).append(">");
+                }
             }
             if(event.isFromType(ChannelType.PRIVATE)) {
-                event.getChannel().sendMessage("```ansi\n"+sb+"```").queue();
+                event.getChannel().sendMessage( "> " + sb).queue();
             } else {
                 //관리자만 사용 할 수 있게 변경
-                event.getAuthor().openPrivateChannel().flatMap(channel -> channel.sendMessage("```ansi\n"+sb+"```")).queue();
+                event.getAuthor().openPrivateChannel().flatMap(channel -> channel.sendMessage("> " + sb)).queue();
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -15,9 +16,8 @@ import org.jsoup.nodes.Element;
 import javax.security.auth.login.LoginException;
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class Main extends ListenerAdapter  {
     public static void main(String[] args) throws LoginException {
@@ -25,8 +25,24 @@ public class Main extends ListenerAdapter  {
         token token = new token();
         JDA jda = JDABuilder.createDefault(token.tokenStr).build();
         jda.addEventListener(new Main());
+
+        Guild guild = jda.getGuildById("961659381789909043");
+
+        if(guild != null) {
+            guild.upsertCommand("ping", "Calculate ping of the bot").queue(); // This can take up to 1 hour to show up in the client
+        }
     }
 
+    @Override
+    public void onSlashCommand(@NotNull SlashCommandEvent event)
+    {
+        if (!event.getName().equals("ping")) return; // make sure we handle the right command
+        long time = System.currentTimeMillis();
+        event.reply("Pong!").setEphemeral(true) // reply or acknowledge
+                .flatMap(v ->
+                        event.getHook().editOriginalFormat("Pong: %d ms", System.currentTimeMillis() - time) // then edit original
+                ).queue(); // Queue both reply and edit
+    }
     public void onReady(@NotNull ReadyEvent event) {
         try {
             System.out.println("접속");
@@ -51,19 +67,34 @@ public class Main extends ListenerAdapter  {
                 Date date = new Date(cal1.getTimeInMillis());
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
                 String strNowDate = simpleDateFormat.format(date);
+
                 if (d_day == 1) {
-                    sb.append("[이벤트] \u001B[1;5m").append(text_event).append("\u001B[0m / \u001B[1;35m종료일 : ").append(strNowDate).append("(").append(date_event).append(")\u001B[0m").append("\n").append("\u001B[1;36m").append(eventURL2).append("\u001B[0m").append("\n \n");
+                    if(text_event.equals("썬데이 메이플")) {
+                        sb.append("[이벤트] \u001B[1;5m").append(text_event).append("\u001B[0m / \u001B[1;35m종료일 : ").append(strNowDate).append("(").append(date_event).append(")\u001B[0m").append("\n").append("\u001B[1;36m").append(eventURL2).append("\u001B[0m").append("\n \n");
+                    }
+                }
+                if(text_event.equals("썬데이 메이플")) {
+                    System.out.println("썬데이");
                 }
             }
+            TimerTask task = new TimerTask() {
+                public void run() {
+                    Date date = new Date();
+                    SimpleDateFormat simpl = new SimpleDateFormat("hh");
+                    String s = simpl.format(date);
+                    if(s.equals("00")) {
+                        JDA jda = event.getJDA();
+                        jda.getTextChannelsByName("공지", true).get(0).sendMessage("@everyone").queue();
+                        jda.getTextChannelsByName("공지", true).get(0).sendMessage("```ansi\n \n \u001B[1;35m이벤트 기간이 얼마 남지 않았습니다 !!!\u001B[0m \n \n"+sb+"```").queue();
+                    }
+                }
+            };
+            Timer timer = new Timer("Timer");
+            long delay = 1000L;
+            long period = 600000L;
+            System.out.println(LocalDateTime.now() + " : 갱신 대기중....");
+            timer.scheduleAtFixedRate(task, delay, period);
 
-            Date date = new Date();
-            SimpleDateFormat simpl = new SimpleDateFormat("hh");
-            String s = simpl.format(date);
-            if(s.equals("00")) {
-                JDA jda = event.getJDA();
-                jda.getTextChannelsByName("테스트", true).get(0).sendMessage("@everyone").queue();
-                jda.getTextChannelsByName("테스트", true).get(0).sendMessage("```ansi\n \n \u001B[1;35m이벤트 기간이 얼마 남지 않았습니다 !!!\u001B[0m \n \n"+sb+"```").queue();
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,7 +114,7 @@ public class Main extends ListenerAdapter  {
                     event.getTextChannel().getName(), event.getMember().getEffectiveName(),
                     event.getMessage().getContentDisplay());
             String message = "test";
- 
+
             for (TextChannel ch : event.getGuild().getTextChannelsByName("테스트", true)) {
                 System.out.println(ch);
             }
