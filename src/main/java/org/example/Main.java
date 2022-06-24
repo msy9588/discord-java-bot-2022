@@ -127,7 +127,7 @@ public class Main extends ListenerAdapter  {
 
         if(event.getMessage().getContentDisplay().equals("이벤트 목록") || event.getMessage().getContentDisplay().equals("이벤트목록") || event.getMessage().getContentDisplay().equals("ㅇㅂㅌㅁㄹ")  ) {
             System.out.println("이벤트");
-           eventCheck.eventList(event);
+            eventCheck.eventList(event);
         }
     }
 }

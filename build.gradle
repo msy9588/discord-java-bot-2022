@@ -11,6 +11,9 @@ repositories {
         name 'm2-dv8tion'
         url 'https://m2.dv8tion.net/releases'
     }
+
+    maven { url 'https://jitpack.io' }
+
 }
 
 dependencies {
@@ -25,7 +28,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
 
-
+    implementation 'com.github.azzerial.slash-commands:api:1.1'
 }
 
 test {
