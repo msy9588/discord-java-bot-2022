@@ -16,7 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class eventCheck extends Main {
-    public void eventList(MessageReceivedEvent event) {
+    public void eventList(@NotNull MessageReceivedEvent event) {
         try {
             String url = "https://maple.gg/";
             Document doc = Jsoup.connect(url).get();

@@ -13,7 +13,8 @@ public class fileRead {
         try {
             JSONParser parser = new JSONParser();
 
-            Reader reader = new FileReader("D:\\GItHub\\discord-java-bot-2022\\src\\main\\java\\org\\example\\command..json");
+            //수정해야함
+            Reader reader = new FileReader("GitHub/discord-java-bot-2022/src/main/java/org/example/command..json");
 
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 

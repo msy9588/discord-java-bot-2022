@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.internal.JDAImpl;
 import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -26,23 +27,25 @@ public class Main extends ListenerAdapter  {
         JDA jda = JDABuilder.createDefault(token.tokenStr).build();
         jda.addEventListener(new Main());
 
-        Guild guild = jda.getGuildById("961659381789909043");
+//        JDA jda = JDABuilder.createLight(token.tokenStr, Collections.emptyList())
+//                .addEventListeners(new Main())
+//                .setActivity(Activity.playing("명령어 만드는 중"))
+//                .build();
 
-        if(guild != null) {
-            guild.upsertCommand("ping", "Calculate ping of the bot").queue(); // This can take up to 1 hour to show up in the client
-        }
+        jda.upsertCommand("이벤트목록", "지금 진행중인 이벤트 목록 조회").queue(); // This can take up to 1 hour to show up in the client
     }
 
     @Override
-    public void onSlashCommand(@NotNull SlashCommandEvent event)
-    {
-        if (!event.getName().equals("ping")) return; // make sure we handle the right command
-        long time = System.currentTimeMillis();
-        event.reply("Pong!").setEphemeral(true) // reply or acknowledge
+    public void onSlashCommand(@NotNull SlashCommandEvent event) {
+        if (!event.getName().equals("이벤트목록")) return; // make sure we handle the right command
+        event.reply("이벤트 목록 조회중").setEphemeral(true) // reply or acknowledge
                 .flatMap(v ->
-                        event.getHook().editOriginalFormat("Pong: %d ms", System.currentTimeMillis() - time) // then edit original
+                        //editOriginalFormat 나만보이게
+                        event.getHook().editOriginalFormat("ㅁㄴㅇㅁㄴㅇㅁㄴ") // then edit original
                 ).queue(); // Queue both reply and edit
+
     }
+
     public void onReady(@NotNull ReadyEvent event) {
         try {
             System.out.println("접속");
@@ -99,8 +102,8 @@ public class Main extends ListenerAdapter  {
             e.printStackTrace();
         }
     }
+
     @Override
-    // MessageReceivedEvent 메세지를 읽어오는 event 추정
     public void onMessageReceived(MessageReceivedEvent event) {
         if (event.isFromType(ChannelType.PRIVATE))  {
             System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
