@@ -5,11 +5,12 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import java.io.FileReader;
 import java.io.Reader;
 
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class fileRead {
-    public void command(MessageReceivedEvent event) {
+public class fileRead extends ListenerAdapter {
+    public void onMessageReceived(MessageReceivedEvent event) {
         try {
             JSONParser parser = new JSONParser();
 
