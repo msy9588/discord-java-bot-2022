@@ -27,6 +27,7 @@ public class Main extends ListenerAdapter  {
         JDA jda = JDABuilder.createDefault(token.tokenStr).build();
         jda.addEventListener(new Main());
 
+
 //        JDA jda = JDABuilder.createLight(token.tokenStr, Collections.emptyList())
 //                .addEventListeners(new Main())
 //                .setActivity(Activity.playing("명령어 만드는 중"))
