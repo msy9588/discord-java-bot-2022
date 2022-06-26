@@ -14,7 +14,7 @@ public class fileRead {
             JSONParser parser = new JSONParser();
 
             //수정해야함
-            Reader reader = new FileReader("../command.json");
+            Reader reader = new FileReader("src/main/java/org/example/command.json");
 
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
