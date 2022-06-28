@@ -1,8 +1,11 @@
 plugins {
     id 'java'
 }
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
+task stage{
+    dependsOn build}
+task wrapper(type:Wrapper){
+    gradleVersion = '5.6.1'
+}
 
 group 'org.example'
 version '1.0-SNAPSHOT'
