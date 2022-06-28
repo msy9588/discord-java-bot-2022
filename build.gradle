@@ -1,6 +1,8 @@
 plugins {
     id 'java'
 }
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
 
 group 'org.example'
 version '1.0-SNAPSHOT'
