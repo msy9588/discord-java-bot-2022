@@ -14,7 +14,6 @@ public class Main extends ListenerAdapter  {
         // 봇의 토근을 저장한다.
         token token = new token();
         JDA jda = JDABuilder.createDefault(token.tokenStr).build();
-//        JDA jda = JDABuilder.createDefault("OTYxNjU5MzgxNzg5OTA5MDQz.GLagni.vSmUyiC0suNAWoFIyzbQssH20DEf57vOSbdR-4").build();
 
         // / 커멘드1
         jda.addEventListener(new Main());
