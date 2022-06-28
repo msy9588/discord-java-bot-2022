@@ -12,8 +12,11 @@ import javax.security.auth.login.LoginException;
 public class Main extends ListenerAdapter  {
     public static void main(String[] args) throws LoginException {
         // 봇의 토근을 저장한다.
-        token token = new token();
-        JDA jda = JDABuilder.createDefault(token.tokenStr).build();
+//        token token = new token();
+//        JDA jda = JDABuilder.createDefault(token.tokenStr).build();
+        JDA jda = JDABuilder.createDefault(System.getenv().get("TOKEN")).build();
+
+        System.out.println("======접속 완료======");
 
         // / 커멘드1
         jda.addEventListener(new Main());
