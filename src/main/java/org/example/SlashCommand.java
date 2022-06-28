@@ -25,25 +25,47 @@ public class SlashCommand extends ListenerAdapter {
             OptionMapping optionMapping = event.getOption("무기이름");
             String option = Objects.requireNonNull(optionMapping).getAsString();
             Options.weapon(option);
-            System.out.println(Options.option);
-
-            StringBuilder sb = new StringBuilder();
-            EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setColor(Color.MAGENTA);
-            embedBuilder.addField("무기 이름",option, false);
-            embedBuilder.setThumbnail(Options.imgURL);
-            System.out.println(option);
-            for (int i = Options.option.size()-1; i > 0; i--) {
-                sb.append(Options.option.size() - i).append("추 : ").append(Options.option.get(i)).append("\n");
+            System.out.println(Options.weaponException);
+            if(Options.weaponException) {
+                event.reply("무기 추옵 조회").setEphemeral(false)
+                        .flatMap(v ->
+                                event.getChannel().sendMessage(Options.embedBuilderWeapon.build())
+                        ).queue();
+            } else {
+                event.reply("오류!! 다시 검색해주세요!").setEphemeral(true)
+                        .flatMap(v ->
+                                event.getHook().editOriginal("검색 내용 : " + option)
+                        ).queue();
             }
-            embedBuilder.addField("추옵", String.valueOf(sb), false);
+        } else if(event.getName().equals("커맨드")) {
+            boolean hidden = false;
+            OptionMapping optionMapping = null;
+            if(event.getOption("전부") != null) {
+                optionMapping = event.getOption("전부");
+            } else if((event.getOption("히든") != null)) {
+                hidden = true;
+                optionMapping = event.getOption("히든");
+            }
+            if(optionMapping == null) {
+                event.reply("오류!! 다시 검색해주세요!").setEphemeral(hidden)
+                        .flatMap(v ->
+                                event.getHook().editOriginal("오류!! 다시 검색해주세요!")
+                        ).queue();
+            }
+            String commandName = Objects.requireNonNull(optionMapping).getAsString();
+            fileRead.fileReadCommand(commandName);
+            if(!fileRead.commandValue.equals("Not Found Command")) {
+                event.reply("커맨드 조회").setEphemeral(hidden)
+                        .flatMap(v ->
+                                event.getHook().editOriginal(fileRead.commandValue)
+                        ).queue();
+            } else {
+                event.reply("오류!! 다시 검색해주세요!").setEphemeral(hidden)
+                        .flatMap(v ->
+                                event.getHook().editOriginal("검색 내용 : " + commandName)
+                        ).queue();
+            }
 
-            event.reply("무기 추옵 조회 중...").setEphemeral(false) // reply or acknowledge
-                    .flatMap(v ->
-                                    //editOriginalFormat 나만보이게
-//                                    event.getHook().editOriginal(String.valueOf("asdad")) // then edit original
-                            event.getChannel().sendMessage(embedBuilder.build())
-                    ).queue(); // Queue both reply and edit
         }
     }
 }

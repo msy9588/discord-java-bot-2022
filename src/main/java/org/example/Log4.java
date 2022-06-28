@@ -11,6 +11,12 @@ public class Log4 extends ListenerAdapter {
         if (event.isFromType(ChannelType.PRIVATE))  {
             System.out.printf("[PM] %s: %s\n", event.getAuthor().getName(),
                     event.getMessage().getContentDisplay());
+            if(!event.getAuthor().getName().equals("아부부 전용 봇")) {
+                event.getChannel().sendMessage("뭐").queue();
+                if(event.getMessage().getContentDisplay().contains("메이플")) {
+                    event.getChannel().sendMessage("너 알빠냐").queue();
+                }
+            }
         } else {
             // event.getGuild().getName() => 채널 이름
             // event.getTextChannel().getName() => 채널 대화창 이름
