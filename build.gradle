@@ -23,24 +23,20 @@ test {
 dependencies {
     implementation("net.dv8tion:JDA:4.3.0_277")
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-
-    // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
-
-    // https://mvnrepository.com/artifact/org.jsoup/jsoup
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
-
     implementation 'com.github.azzerial.slash-commands:api:1.1'
 }
 
 task stage(dependsOn: ['build','shadowJar', 'clean', 'test'])
+
 build.mustRunAfter clean
 build.mustRunAfter test
 
 jar {
     manifest{
-        attributes 'Class-Path': '/libs/discord-java-bot-2022-1.0-SNAPSHOT.jar', 'Main-Class': 'org.example.Main'
+        attributes 'Main-Class': 'org.example.Main'
     }
 }

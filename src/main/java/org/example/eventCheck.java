@@ -43,7 +43,7 @@ public class eventCheck extends Main {
                 String eventURL2 = "<"+eventURL.attr("href")+">";
 
                 Calendar cal1 = Calendar.getInstance();
-                cal1.add(Calendar.DATE, d_day); // 일 계산
+                cal1.add(Calendar.DATE, d_day-1); // 일 계산
                 Date date = new Date(cal1.getTimeInMillis());
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
                 String strNowDate = simpleDateFormat.format(date);
