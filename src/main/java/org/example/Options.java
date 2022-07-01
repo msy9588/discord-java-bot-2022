@@ -8,9 +8,14 @@ import org.jsoup.select.Elements;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Options extends ListenerAdapter {
+
+    public static void main(String[] args) {
+        weapon("아케인셰이드 튜너");
+    }
     static ArrayList<String> option = new ArrayList<>();
     static EmbedBuilder embedBuilderWeapon = new EmbedBuilder();
 
@@ -21,6 +26,8 @@ public class Options extends ListenerAdapter {
         option.clear();
         try {
             String[] weapon = msg.split(" ");
+
+            System.out.println(Arrays.toString(weapon));
 
             String url = "http://wachan.me/weapon.php?weapon=" + weapon[1];
             Document doc = Jsoup.connect(url).get();
@@ -45,7 +52,7 @@ public class Options extends ListenerAdapter {
                 weaponException = true;
                 embedBuilderWeapon.clear();
                 embedBuilderWeapon.setColor(Color.MAGENTA);
-                embedBuilderWeapon.addField("무기 이름","```"+msg+"```", false);
+                embedBuilderWeapon.addField("무기 이름",msg, false);
                 embedBuilderWeapon.setThumbnail(Options.imgURL);
                 embedBuilderWeapon.addField("추옵", String.valueOf(sb), false);
             } else {

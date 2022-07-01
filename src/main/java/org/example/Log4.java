@@ -14,7 +14,7 @@ public class Log4 extends ListenerAdapter {
             if(!event.getAuthor().getName().equals("아부부 전용 봇")) {
                 event.getChannel().sendMessage("뭐").queue();
                 if(event.getMessage().getContentDisplay().contains("메이플")) {
-                    event.getChannel().sendMessage("너 알빠냐").queue();
+                    event.getChannel().sendMessage("너 알빠냐!!!!").queue();
                 }
             }
         } else {
