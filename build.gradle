@@ -44,5 +44,4 @@ jar {
     }
 }
 
-
 mainClassName = 'org.example.Main'
