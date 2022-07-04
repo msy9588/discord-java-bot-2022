@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,6 +27,7 @@ public class EvemtReady extends ListenerAdapter {
                         }
                     }
                 }
+                TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
                 Date date = new Date();
                 SimpleDateFormat simpl = new SimpleDateFormat("hh:a");
                 String s = simpl.format(date);

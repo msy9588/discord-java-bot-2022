@@ -13,16 +13,32 @@ import java.util.Objects;
 
 public class Options extends ListenerAdapter {
 
+
     public static void main(String[] args) {
-        weapon("아케인셰이드 튜너");
+        weaponNamuImg();
     }
     static ArrayList<String> option = new ArrayList<>();
     static EmbedBuilder embedBuilderWeapon = new EmbedBuilder();
-
     static boolean weaponException = true;
-
     static String imgURL = null;
+    public static void weaponNamuImg() {
+        try {
+            String msg = "아케인셰이드 완드";
+
+            String url = "https://namu.wiki/jump/파일:" + msg +".png";
+            Document doc = Jsoup.connect(url).get();
+
+            System.out.println(url);
+
+            Elements weaponDiv = doc.select("img");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void weapon(String msg) {
+
         option.clear();
         try {
             String[] weapon = msg.split(" ");
