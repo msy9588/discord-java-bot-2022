@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.awt.*;
 import java.io.File;
+import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +19,6 @@ public class Options extends ListenerAdapter {
     static EmbedBuilder embedBuilderWeapon = new EmbedBuilder();
     static boolean weaponException = true;
 
-    static File imgURL = null;
     public static void weapon(String msg) {
         option.clear();
         String[] weapon = msg.split(" ");
@@ -46,8 +46,6 @@ public class Options extends ListenerAdapter {
                     }
                 }
             }
-            imgURL = new File("/img");
-//            imgURL = "/home/ubuntu/discord/weapon/" + msg + ".png";
             resultSet.close();
             statement.close();
             connection.close();
@@ -61,12 +59,13 @@ public class Options extends ListenerAdapter {
         }
 
         if(!String.valueOf(sb).isEmpty()) {
-            File file = new File("img/라피스 9형.png");
             weaponException = true;
             embedBuilderWeapon.clear();
             embedBuilderWeapon.setColor(Color.MAGENTA);
             embedBuilderWeapon.addField("무기 이름",msg, false);
-//            embedBuilderWeapon.setImage(file);
+            String url = "http://raw.githubusercontent.com/dudqls5271/discord-java-bot-2022/master/img/weapon/아케인셰이드 튜너.png";
+            embedBuilderWeapon.setThumbnail(url);
+//            embedBuilderWeapon.setThumbnail("http://wachan.me/weapon_img/Arcaneshadexbsj.png");
             embedBuilderWeapon.addField("추옵", String.valueOf(sb), false);
         } else {
             weaponException = false;
