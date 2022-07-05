@@ -22,8 +22,9 @@ public class Options extends ListenerAdapter {
     public static void weapon(String msg) {
         option.clear();
         String[] weapon = msg.split(" ");
-
+        String url = null;
         try {
+
             mySQL mySQL = new mySQL();
             Connection connection = DriverManager.getConnection(mySQL.url, mySQL.userName, mySQL.password);
             Statement statement = connection.createStatement();
@@ -42,7 +43,7 @@ public class Options extends ListenerAdapter {
                         option.add(resultSet.getString("weapon_3"));
                         option.add(resultSet.getString("weapon_4"));
                         option.add(resultSet.getString("weapon_5"));
-
+                        url = "https://raw.githubusercontent.com/dudqls5271/discord-java-bot-2022/master/img/weapon/"+resultSet.getString("engName")+".png";
                     }
                 }
             }
@@ -52,7 +53,7 @@ public class Options extends ListenerAdapter {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        System.out.println(url);
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < option.size(); i++) {
             sb.append(i+1).append("추 : ").append(option.get(i)).append("\n");
@@ -63,9 +64,7 @@ public class Options extends ListenerAdapter {
             embedBuilderWeapon.clear();
             embedBuilderWeapon.setColor(Color.MAGENTA);
             embedBuilderWeapon.addField("무기 이름",msg, false);
-            String url = "http://raw.githubusercontent.com/dudqls5271/discord-java-bot-2022/master/img/weapon/아케인셰이드 튜너.png";
             embedBuilderWeapon.setThumbnail(url);
-//            embedBuilderWeapon.setThumbnail("http://wachan.me/weapon_img/Arcaneshadexbsj.png");
             embedBuilderWeapon.addField("추옵", String.valueOf(sb), false);
         } else {
             weaponException = false;
