@@ -29,6 +29,8 @@ public class Main extends ListenerAdapter  {
         // json 파일 읽기
         jda.addEventListener(new fileRead());
 
+        jda.removeEventListener();
+
         jda.upsertCommand("이벤트목록", "지금 진행중인 이벤트 목록 조회").queue();
         jda.upsertCommand("추옵", "무기 추옵 검색")
                 .addOption(OptionType.STRING ,"무기이름", "무기이름").queue();
@@ -36,6 +38,9 @@ public class Main extends ListenerAdapter  {
         jda.upsertCommand("커맨드", "커맨드 검색")
                 .addOption(OptionType.STRING ,"전부", "전부")
                 .addOption(OptionType.STRING, "히든", "히든").queue();
+
+        jda.upsertCommand("멜론", "멜론 차트 n 위꺼지 검색")
+                .addOption(OptionType.STRING ,"n위", "순위") .queue();
 
     }
 }

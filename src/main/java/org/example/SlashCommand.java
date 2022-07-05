@@ -8,7 +8,9 @@ import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.StringReader;
 import java.util.Objects;
 
 public class SlashCommand extends ListenerAdapter {
@@ -68,6 +70,15 @@ public class SlashCommand extends ListenerAdapter {
                         ).queue();
             }
 
+        } else if(event.getName().equals("멜론")) {
+            OptionMapping optionMapping = event.getOption("n위");
+            int index = Integer.parseInt(Objects.requireNonNull(optionMapping).getAsString());
+            System.out.println(index);
+            Melon_chart.Melon(index);
+            event.reply("차트 조회 중...").setEphemeral(false)
+                    .flatMap(v ->
+                            event.getChannel().sendMessage(Melon_chart.embedBuilde.build())
+                    ).queue();
         }
     }
 }
