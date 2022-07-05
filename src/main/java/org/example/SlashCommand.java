@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.io.File;
 import java.util.Objects;
 
 public class SlashCommand extends ListenerAdapter {
@@ -20,7 +21,8 @@ public class SlashCommand extends ListenerAdapter {
                                     //editOriginalFormat 나만보이게
                                     event.getHook().editOriginal(String.valueOf(eventCheck.sb)) // then edit original
 //                        getChannel().sendMessage(org.example.eventCheck.sb)
-                    ).queue(); // Queue both reply and edit
+                    ).queue();
+            // Queue both reply and edit
         } else if(event.getName().equals("추옵")) {
             OptionMapping optionMapping = event.getOption("무기이름");
             String option = Objects.requireNonNull(optionMapping).getAsString();

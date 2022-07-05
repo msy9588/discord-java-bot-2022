@@ -7,74 +7,68 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.awt.*;
+import java.io.File;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
 public class Options extends ListenerAdapter {
-
-
-    public static void main(String[] args) {
-        weaponNamuImg();
-    }
     static ArrayList<String> option = new ArrayList<>();
     static EmbedBuilder embedBuilderWeapon = new EmbedBuilder();
     static boolean weaponException = true;
-    static String imgURL = null;
-    public static void weaponNamuImg() {
-        try {
-            String msg = "아케인셰이드 완드";
 
-            String url = "https://namu.wiki/jump/파일:" + msg +".png";
-            Document doc = Jsoup.connect(url).get();
-
-            System.out.println(url);
-
-            Elements weaponDiv = doc.select("img");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
+    static File imgURL = null;
     public static void weapon(String msg) {
-
         option.clear();
+        String[] weapon = msg.split(" ");
+
         try {
-            String[] weapon = msg.split(" ");
+            mySQL mySQL = new mySQL();
+            Connection connection = DriverManager.getConnection(mySQL.url, mySQL.userName, mySQL.password);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from discord.weapon");
 
-            System.out.println(Arrays.toString(weapon));
+            resultSet.next();
+            while (resultSet.next()) {
+                String weaponClass = resultSet.getString("weaponClass");
+                String weaponName = resultSet.getString("weaponName");
 
-            String url = "http://wachan.me/weapon.php?weapon=" + weapon[1];
-            Document doc = Jsoup.connect(url).get();
+                if(weapon[0].equals(weaponClass)) {
+                    if(msg.replace(weapon[0], "").trim().equals(weaponName)) {
+                        System.out.println(resultSet.getString("weaponBasics"));
+                        option.add(resultSet.getString("weapon_1"));
+                        option.add(resultSet.getString("weapon_2"));
+                        option.add(resultSet.getString("weapon_3"));
+                        option.add(resultSet.getString("weapon_4"));
+                        option.add(resultSet.getString("weapon_5"));
 
-            Elements weaponDiv = doc.select("div[class=\"table4\"]");
-
-            for (int i = 0; i < weaponDiv.select("span[class=\"name\"]").size(); i++) {
-                if(weaponDiv.select("span[class=\"name\"]").get(i).text().contains(weapon[0])) {
-                    imgURL = "http://wachan.me/"+weaponDiv.select("img[class=\"Image\"]").get(i).attr("src");
-                    for (int j = 0; j <weaponDiv.select("div[class=\"row\"]").get(i).select("span[class=\"Option\"]").size(); j++) {
-                        if(!Objects.equals(weaponDiv.select("div[class=\"row\"]").get(i).select("span[class=\"Option\"]").get(j).text(), "")) {
-                            option.add(weaponDiv.select("div[class=\"row\"]").get(i).select("span[class=\"Option\"]").get(j).text());
-                        }
                     }
                 }
             }
-            StringBuilder sb = new StringBuilder();
-            for (int i = option.size()-1; i > 0; i--) {
-                sb.append(option.size() - i).append("추 : ").append(option.get(i)).append("\n");
-            }
-            if(!String.valueOf(sb).isEmpty()) {
-                weaponException = true;
-                embedBuilderWeapon.clear();
-                embedBuilderWeapon.setColor(Color.MAGENTA);
-                embedBuilderWeapon.addField("무기 이름",msg, false);
-                embedBuilderWeapon.setThumbnail(Options.imgURL);
-                embedBuilderWeapon.addField("추옵", String.valueOf(sb), false);
-            } else {
-                weaponException = false;
-            }
-        } catch (Exception e) {
+            imgURL = new File("/img");
+//            imgURL = "/home/ubuntu/discord/weapon/" + msg + ".png";
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < option.size(); i++) {
+            sb.append(i+1).append("추 : ").append(option.get(i)).append("\n");
+        }
+
+        if(!String.valueOf(sb).isEmpty()) {
+            File file = new File("img/라피스 9형.png");
+            weaponException = true;
+            embedBuilderWeapon.clear();
+            embedBuilderWeapon.setColor(Color.MAGENTA);
+            embedBuilderWeapon.addField("무기 이름",msg, false);
+//            embedBuilderWeapon.setImage(file);
+            embedBuilderWeapon.addField("추옵", String.valueOf(sb), false);
+        } else {
             weaponException = false;
         }
     }

@@ -30,6 +30,8 @@ dependencies {
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
     implementation 'com.github.azzerial.slash-commands:api:1.1'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.29'
+
 }
 
 task stage(dependsOn: ['build','shadowJar', 'clean', 'test'])
