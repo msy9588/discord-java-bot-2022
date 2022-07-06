@@ -1,10 +1,12 @@
 package org.example;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -17,38 +19,34 @@ public class EvemtReady extends ListenerAdapter {
         TimerTask task = new TimerTask() {
             public void run() {
                 eventCheck.eventCrolling();
-                StringBuilder sb = new StringBuilder();
+                EmbedBuilder eventD_Day = new EmbedBuilder();
+
+                TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+                Date date = new Date();
+                SimpleDateFormat simpl = new SimpleDateFormat("hh:mm:a");
+                String s = simpl.format(date);
                 for (int i = 0; i < eventCheck.eventNameList.size(); i++) {
                     if(eventCheck.d_dayList.get(i).equals("1")) {
                         if(!eventCheck.eventNameList.get(i).equals("썬데이 메이플")) {
-                            sb.append("\r> ```ansi\n " + "> [이벤트] \u001B[1;5m").append(eventCheck.eventNameList.get(i)).append("\u001B[0m / \u001B[1;35m종료일 : ").append(eventCheck.strNowDateList.get(i)).append("(").append(eventCheck.eventDataList.get(i)).append(")\u001B[0m ```").append(eventCheck.eventUrlList.get(i));
+                            if(s.equals("12:01:오전")) {
+                                eventD_Day.setColor(Color.red);
+                                eventD_Day.setTitle("이벤트 기간이 1일밖에 남지 않았습니다!!! ");
+                                eventD_Day.appendDescription(i+1+". "+"["+ eventCheck.eventNameList.get(i) +"]("+ eventCheck.eventUrlList.get(i) +") \n" + eventCheck.strNowDateList.get(i)+" ("+ eventCheck.eventDataList.get(i) + ") \n \n");
+                                JDA jda = event.getJDA();
+                                jda.getTextChannelsByName("테스트", true).get(0).sendMessage("@everyone").queue();
+                                jda.getTextChannelsByName("테스트", true).get(0).sendMessageEmbeds(eventD_Day.build()).queue();
+                            }
                         } else {
                             System.out.println("1일 남은 이벤트 없음");
                         }
                     }
                 }
-                TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
-                Date date = new Date();
-                SimpleDateFormat simpl = new SimpleDateFormat("hh:a");
-                String s = simpl.format(date);
-                System.out.println(s);
-                if(s.equals("12:오전")) {
-                    System.out.println(sb);
-                    JDA jda = event.getJDA();
-                    if(!String.valueOf(sb).equals("") && !String.valueOf(sb).equals(" ") && String.valueOf(sb) != null) {
-                        sb.insert(0, "> ```ansi\n" +
-                                "> \u001B[1;35m이벤트 기간이 1일밖에 남지 않았습니다!!!\u001B[0m ```");
-                      jda.getTextChannelsByName("아부부-봇-공지", true).get(0).sendMessage("@everyone").queue();
-                      jda.getTextChannelsByName("아부부-봇-공지", true).get(0).sendMessage(sb).queue();
-//                        jda.getTextChannelsByName("테스트", true).get(0).sendMessage("@everyone").queue();
-//                        jda.getTextChannelsByName("테스트", true).get(0).sendMessage(sb).queue();
-                    }
-                }
             }
+
         };
         Timer timer = new Timer("Timer");
         long delay = 1000L;
-        long period = 3600000L;
+        long period = 60000L;
         System.out.println(LocalDateTime.now() + " : 갱신 대기중....");
         timer.scheduleAtFixedRate(task, delay, period);
 

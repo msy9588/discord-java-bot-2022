@@ -3,9 +3,9 @@ package org.example;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
 
 import javax.security.auth.login.LoginException;
 
@@ -29,18 +29,15 @@ public class Main extends ListenerAdapter  {
         // json 파일 읽기
         jda.addEventListener(new fileRead());
 
-        jda.removeEventListener();
 
-        jda.upsertCommand("이벤트목록", "지금 진행중인 이벤트 목록 조회").queue();
-        jda.upsertCommand("추옵", "무기 추옵 검색")
-                .addOption(OptionType.STRING ,"무기이름", "무기이름").queue();
-
-        jda.upsertCommand("커맨드", "커맨드 검색")
-                .addOption(OptionType.STRING ,"전부", "전부")
-                .addOption(OptionType.STRING, "히든", "히든").queue();
-
-        jda.upsertCommand("멜론", "멜론 차트 n 위꺼지 검색")
-                .addOption(OptionType.STRING ,"n위", "순위") .queue();
-
+        jda.updateCommands()
+                .addCommands(Commands.slash("이벤트목록", "지금 진행중인 이벤트 목록 조회"))
+                .addCommands(Commands.slash("추옵", "무기 추옵 검색")
+                        .addOption(OptionType.STRING ,"무기이름", "무기이름")
+                )
+                .addCommands(Commands.slash("커맨드", "커맨드 검색")
+                        .addOption(OptionType.STRING ,"전부", "전부")
+                        .addOption(OptionType.STRING, "히든", "히든")
+                ).queue();
     }
 }
