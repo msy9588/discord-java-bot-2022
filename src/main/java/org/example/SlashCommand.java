@@ -1,8 +1,10 @@
 package org.example;
 
+import com.github.ygimenez.method.Pages;
 import com.github.ygimenez.model.InteractPage;
 import com.github.ygimenez.model.Page;
 import net.dv8tion.jda.api.MessageBuilder;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
@@ -77,6 +79,10 @@ public class SlashCommand extends ListenerAdapter {
                 mb.setContent("This is entry Nº " + i);
                 pages.add(new InteractPage(mb.build()));
             }
+
+            event.getChannel().sendMessage((Message) pages.get(0).getContent()).queue(success -> {
+                Pages.paginate(success, pages, /* Use buttons? */ true);
+            });
         }
     }
 }
