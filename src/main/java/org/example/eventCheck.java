@@ -52,10 +52,6 @@ public class eventCheck extends Main {
                 strNowDateList.add(strNowDate);
                 eventDataList.add(date_event);
                 d_dayList.add(String.valueOf(d_day));
-
-                if(!text_event.equals("썬데이 메이플")) {
-
-                }
             }
             eventBuilder.clear();
             eventBuilder.setColor(Color.MAGENTA);

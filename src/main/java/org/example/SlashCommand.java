@@ -1,11 +1,13 @@
 package org.example;
 
-import net.dv8tion.jda.api.entities.emoji.Emoji;
+import com.github.ygimenez.model.InteractPage;
+import com.github.ygimenez.model.Page;
+import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
-import net.dv8tion.jda.api.interactions.components.buttons.Button;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class SlashCommand extends ListenerAdapter {
@@ -61,7 +63,20 @@ public class SlashCommand extends ListenerAdapter {
                                 event.getHook().editOriginal("검색 내용 : " + commandName)
                         ).queue();
             }
+        } else if(event.getName().equals("농장")) {
+            OptionMapping monsterName = event.getOption("몬스터이름");
+            String option = Objects.requireNonNull(monsterName).getAsString();
+            MapleFarm.mesoKr(option);
 
+            ArrayList<Page> pages = new ArrayList<>();
+            MessageBuilder mb = new MessageBuilder();
+
+            // Adding 10 pages to the list
+            for (int i = 0; i < 10; i++) {
+                mb.clear();
+                mb.setContent("This is entry Nº " + i);
+                pages.add(new InteractPage(mb.build()));
+            }
         }
     }
 }

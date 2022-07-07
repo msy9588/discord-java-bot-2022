@@ -20,7 +20,7 @@ public class EvemtReady extends ListenerAdapter {
             public void run() {
                 eventCheck.eventCrolling();
                 EmbedBuilder eventD_Day = new EmbedBuilder();
-
+                EmbedBuilder sunDayMaple = new EmbedBuilder();
                 TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
                 Date date = new Date();
                 SimpleDateFormat simpl = new SimpleDateFormat("hh:mm:a");
@@ -33,12 +33,16 @@ public class EvemtReady extends ListenerAdapter {
                                 eventD_Day.setTitle("이벤트 기간이 1일밖에 남지 않았습니다!!! ");
                                 eventD_Day.appendDescription(i+1+". "+"["+ eventCheck.eventNameList.get(i) +"]("+ eventCheck.eventUrlList.get(i) +") \n" + eventCheck.strNowDateList.get(i)+" ("+ eventCheck.eventDataList.get(i) + ") \n \n");
                                 JDA jda = event.getJDA();
-                                jda.getTextChannelsByName("테스트", true).get(0).sendMessage("@everyone").queue();
-                                jda.getTextChannelsByName("테스트", true).get(0).sendMessageEmbeds(eventD_Day.build()).queue();
+//                                jda.getTextChannelsByName("테스트", true).get(0).sendMessage("@everyone").queue();
+//                                jda.getTextChannelsByName("테스트", true).get(0).sendMessageEmbeds(eventD_Day.build()).queue();
+                                jda.getTextChannelsByName("봇-공지", true).get(0).sendMessage("@everyone").queue();
+                                jda.getTextChannelsByName("봇-공지", true).get(0).sendMessageEmbeds(eventD_Day.build()).queue();
                             }
-                        } else {
-                            System.out.println("1일 남은 이벤트 없음");
                         }
+                    }
+                    if(eventCheck.eventNameList.get(i).equals("썬데이 메이플")) {
+                        sunDayMaple.setColor(Color.MAGENTA);
+                        sunDayMaple.setTitle("썬데이 메이플");
                     }
                 }
             }

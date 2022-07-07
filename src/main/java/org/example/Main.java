@@ -28,6 +28,7 @@ public class Main extends ListenerAdapter  {
         jda.addEventListener(new EvemtReady());
         // json 파일 읽기
         jda.addEventListener(new fileRead());
+        jda.addEventListener(new Notice());
 
 
         jda.updateCommands()
@@ -38,6 +39,11 @@ public class Main extends ListenerAdapter  {
                 .addCommands(Commands.slash("커맨드", "커맨드 검색")
                         .addOption(OptionType.STRING ,"전부", "전부")
                         .addOption(OptionType.STRING, "히든", "히든")
-                ).queue();
+                )
+                .addCommands(Commands.slash("농장", "농장 조합 및 보유 농장 검색")
+                        .addOption(OptionType.STRING ,"몬스터이름", "몬스터이름")
+                        .addOption(OptionType.STRING ,"조합식", "조합식")
+                )
+                .queue();
     }
 }
