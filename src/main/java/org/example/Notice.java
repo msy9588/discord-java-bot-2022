@@ -48,10 +48,10 @@ public class Notice extends EvemtReady{
                                 notice.appendDescription(noticeGet0 + " - " + noticeDateGet0+"\n");
                                 notice.appendDescription("[바로가기]" + "(https://maplestory.nexon.com/"+noticeURL+")");
                                 JDA jda = event.getJDA();
-//                                jda.getTextChannelsByName("테스트", true).get(0).sendMessage("@everyone").queue();
-//                                jda.getTextChannelsByName("테스트", true).get(0).sendMessageEmbeds(notice.build()).queue();
-                                jda.getTextChannelsByName("봇-공지", true).get(0).sendMessage("@everyone").queue();
-                                jda.getTextChannelsByName("봇-공지", true).get(0).sendMessageEmbeds(notice.build()).queue();
+                                jda.getTextChannelsByName("테스트", true).get(0).sendMessage("@everyone").queue();
+                                jda.getTextChannelsByName("테스트", true).get(0).sendMessageEmbeds(notice.build()).queue();
+//                                jda.getTextChannelsByName("봇-공지", true).get(0).sendMessage("@everyone").queue();
+//                                jda.getTextChannelsByName("봇-공지", true).get(0).sendMessageEmbeds(notice.build()).queue();
                             }
                         }
                     } catch (Exception e) {

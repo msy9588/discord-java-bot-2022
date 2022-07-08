@@ -6,7 +6,6 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
-
 import javax.security.auth.login.LoginException;
 
 
@@ -28,8 +27,8 @@ public class Main extends ListenerAdapter  {
         jda.addEventListener(new EvemtReady());
         // json 파일 읽기
         jda.addEventListener(new fileRead());
-        jda.addEventListener(new Notice());
 
+        jda.addEventListener(new Notice());
 
         jda.updateCommands()
                 .addCommands(Commands.slash("이벤트목록", "지금 진행중인 이벤트 목록 조회"))

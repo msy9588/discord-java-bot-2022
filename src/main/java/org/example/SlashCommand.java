@@ -1,15 +1,17 @@
 package org.example;
 
-import com.github.ygimenez.method.Pages;
-import com.github.ygimenez.model.InteractPage;
-import com.github.ygimenez.model.Page;
-import net.dv8tion.jda.api.MessageBuilder;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
+import net.dv8tion.jda.api.interactions.components.buttons.Button;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class SlashCommand extends ListenerAdapter {
@@ -70,19 +72,40 @@ public class SlashCommand extends ListenerAdapter {
             String option = Objects.requireNonNull(monsterName).getAsString();
             MapleFarm.mesoKr(option);
 
-            ArrayList<Page> pages = new ArrayList<>();
-            MessageBuilder mb = new MessageBuilder();
+            event.reply("Click the button to say hello")
+                    .addActionRow(
+                            Button.primary("Previous", "⏮"), // Button with only a label
+                            Button.primary("Next", "⏭")) // Button with only an emoji
+                    .queue();
 
-            // Adding 10 pages to the list
-            for (int i = 0; i < 10; i++) {
-                mb.clear();
-                mb.setContent("This is entry Nº " + i);
-                pages.add(new InteractPage(mb.build()));
+        }
+    }
+
+    int totle = 11;
+    int startPage = 0;
+    int cntPerPage = 5;
+    int rest = totle % cntPerPage;
+    public void onButtonInteraction(@NotNull ButtonInteractionEvent event) {
+
+        EmbedBuilder test = new EmbedBuilder();
+        if (event.getComponentId().equals("Next")) {
+            test.clear();
+            test.setTitle("Test");
+            System.out.println("startPage : "+startPage);
+            System.out.println("cntPerPage : "+cntPerPage);
+            for (int i = startPage; i < cntPerPage; i++) {
+                test.appendDescription("Test" + i);
+            }
+            event.editMessageEmbeds(test.build()).queue();
+            if(!(startPage + 5 > totle)) {
+                startPage = startPage + 5;
             }
 
-            event.getChannel().sendMessage((Message) pages.get(0).getContent()).queue(success -> {
-                Pages.paginate(success, pages, /* Use buttons? */ true);
-            });
+            if(!(cntPerPage + 5 > totle)) {
+                cntPerPage = cntPerPage + 5;
+            } else {
+                cntPerPage = cntPerPage + rest;
+            }
         }
     }
 }
