@@ -4,6 +4,7 @@ import com.github.ygimenez.method.Pages;
 import com.github.ygimenez.model.InteractPage;
 import com.github.ygimenez.model.Page;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -87,13 +88,18 @@ public class SlashCommand extends ListenerAdapter {
                 }
                 System.out.println(pages.size());
 
-                event.reply("농장 목록 조회 중...").setEphemeral(true) // reply or acknowledge
-                        .flatMap(v ->
-                                //eventCheck.eventBuilder
-                                event.getHook().editOriginalEmbeds((MessageEmbed) pages.get(0).getContent())
-                        ).queue(success -> {
-                            Pages.paginate(success, pages, /* Use buttons? */ true);
-                        });
+//                event.reply("농장 목록 조회 중...").setEphemeral(true) // reply or acknowledge
+//                        .flatMap(v ->
+//                                //eventCheck.eventBuilder
+//                                event.getHook().editOriginalEmbeds((MessageEmbed) pages.get(0).getContent())
+//                        ).queue(success -> {
+//                            Pages.paginate(success, pages, /* Use buttons? */ true);
+//                        });
+
+                event.getChannel().sendMessageEmbeds((MessageEmbed) pages.get(0).getContent()).queue(success -> {
+                    Pages.paginate(success, pages, /* Use buttons? */ true);
+                });
+
             }
 
             if(event.getOption("조합식") != null) {
