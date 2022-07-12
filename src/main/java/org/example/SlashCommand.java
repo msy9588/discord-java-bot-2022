@@ -1,21 +1,20 @@
 package org.example;
 
+import com.github.ygimenez.method.Pages;
+import com.github.ygimenez.model.InteractPage;
+import com.github.ygimenez.model.Page;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.emoji.Emoji;
-import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
-import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
+import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
-import net.dv8tion.jda.api.interactions.components.buttons.Button;
-import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class SlashCommand extends ListenerAdapter {
-    public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
+    public void onSlashCommand(SlashCommandEvent event) {
         if(event.getName().equals("이벤트목록")) {
             eventCheck.eventCrolling();
             event.reply("이벤트 목록 조회 중...").setEphemeral(true) // reply or acknowledge
@@ -68,43 +67,44 @@ public class SlashCommand extends ListenerAdapter {
                         ).queue();
             }
         } else if(event.getName().equals("농장")) {
-            OptionMapping monsterName = event.getOption("몬스터이름");
-            String option = Objects.requireNonNull(monsterName).getAsString();
-            MapleFarm.mesoKr(option);
+            if(event.getOption("몬스터이름")!= null) {
+                OptionMapping monsterName = event.getOption("몬스터이름");
+                String option = Objects.requireNonNull(monsterName).getAsString();
+                MapleFarm.mesoKr(option);
 
-            event.reply("Click the button to say hello")
-                    .addActionRow(
-                            Button.primary("Previous", "⏮"), // Button with only a label
-                            Button.primary("Next", "⏭")) // Button with only an emoji
-                    .queue();
+                ArrayList<Page> pages = new ArrayList<>();
+                EmbedBuilder mesokrBuild  = new EmbedBuilder();
 
-        }
-    }
+                for (int i = 0; i < MapleFarm.userArrayList.size(); i++) {
+                    mesokrBuild.clear();
+                    mesokrBuild.setTitle(option+ "에 대한 검색 결과\n" +"Page : " + i + "/" + MapleFarm.userArrayList.size());
+                    mesokrBuild.setColor(Color.MAGENTA);
+                    mesokrBuild.addField("농장 이름",MapleFarm.userArrayList.get(i), true);
+                    mesokrBuild.addField("마리수",MapleFarm.numList.get(i), true);
+                    mesokrBuild.addField("유호 기간",MapleFarm.dayArrayList.get(i), true);
+                    mesokrBuild.setFooter("https://meso.kr");
+                    pages.add(new InteractPage(mesokrBuild.build()));
+                }
+                System.out.println(pages.size());
 
-    int totle = 11;
-    int startPage = 0;
-    int cntPerPage = 5;
-    int rest = totle % cntPerPage;
-    public void onButtonInteraction(@NotNull ButtonInteractionEvent event) {
-
-        EmbedBuilder test = new EmbedBuilder();
-        if (event.getComponentId().equals("Next")) {
-            test.clear();
-            test.setTitle("Test");
-            System.out.println("startPage : "+startPage);
-            System.out.println("cntPerPage : "+cntPerPage);
-            for (int i = startPage; i < cntPerPage; i++) {
-                test.appendDescription("Test" + i);
-            }
-            event.editMessageEmbeds(test.build()).queue();
-            if(!(startPage + 5 > totle)) {
-                startPage = startPage + 5;
+                event.reply("농장 목록 조회 중...").setEphemeral(true) // reply or acknowledge
+                        .flatMap(v ->
+                                //eventCheck.eventBuilder
+                                event.getHook().editOriginalEmbeds((MessageEmbed) pages.get(0).getContent())
+                        ).queue(success -> {
+                            Pages.paginate(success, pages, /* Use buttons? */ true);
+                        });
             }
 
-            if(!(cntPerPage + 5 > totle)) {
-                cntPerPage = cntPerPage + 5;
-            } else {
-                cntPerPage = cntPerPage + rest;
+            if(event.getOption("조합식") != null) {
+                OptionMapping monsterName = event.getOption("조합식");
+                String option = Objects.requireNonNull(monsterName).getAsString();
+                MapleFarm.wachan(option);
+
+                event.reply("검색 내용").setEphemeral(false)
+                        .flatMap(v ->
+                                event.getChannel().sendMessageEmbeds(MapleFarm.wachanBuild.build())
+                        ).queue();
             }
         }
     }
