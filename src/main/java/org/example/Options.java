@@ -30,7 +30,6 @@ public class Options extends ListenerAdapter {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from discord.weapon");
 
-            resultSet.next();
             while (resultSet.next()) {
                 String weaponClass = resultSet.getString("weaponClass");
                 String weaponName = resultSet.getString("weaponName");

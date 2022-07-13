@@ -18,6 +18,7 @@ public class EvemtReady extends ListenerAdapter {
     public void onReady(@NotNull ReadyEvent event) {
         TimerTask task = new TimerTask() {
             public void run() {
+                System.out.println("==========이벤트 확인 로고==========");
                 eventCheck.eventCrolling();
                 EmbedBuilder eventD_Day = new EmbedBuilder();
                 EmbedBuilder sunDayMaple = new EmbedBuilder();
@@ -50,7 +51,7 @@ public class EvemtReady extends ListenerAdapter {
         };
         Timer timer = new Timer("Timer");
         long delay = 1000L;
-        long period = 60000L;
+        long period = 10000;
         System.out.println(LocalDateTime.now() + " : 갱신 대기중....");
         timer.scheduleAtFixedRate(task, delay, period);
 

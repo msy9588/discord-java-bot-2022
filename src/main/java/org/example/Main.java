@@ -1,5 +1,4 @@
 package org.example;
-
 import com.github.ygimenez.exception.InvalidHandlerException;
 import com.github.ygimenez.method.Pages;
 import com.github.ygimenez.model.PaginatorBuilder;
@@ -11,6 +10,8 @@ import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 
 import javax.security.auth.login.LoginException;
+import java.util.Timer;
+import java.util.TimerTask;
 //import net.dv8tion.jda.api.interactions.commands.build.Commands;
 
 public class Main extends ListenerAdapter  {
@@ -21,7 +22,15 @@ public class Main extends ListenerAdapter  {
         System.out.println("======접속 완료======");
         // / 커멘드1
         jda.addEventListener(new Main());
-        jda.getPresence().setActivity(Activity.playing("MapleStory"));
+
+//        new Timer().schedule(new TimerTask(){
+//            int i = 0;
+//            public void run(){
+//                i = i + 1;
+//                System.out.println(i);
+//                jda.getPresence().setActivity(Activity.playing(i + "초 동안 구동 중"));
+//            }},1000,1000);
+        jda.getPresence().setActivity(Activity.playing("초 동안 구동 중"));
 
         // 대화 로고
         jda.addEventListener(new Log4());
@@ -31,7 +40,7 @@ public class Main extends ListenerAdapter  {
         jda.addEventListener(new EvemtReady());
         // json 파일 읽기
         jda.addEventListener(new fileRead());
-
+        // 공홈 공지
         jda.addEventListener(new Notice());
 
 

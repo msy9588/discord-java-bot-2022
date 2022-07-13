@@ -78,7 +78,7 @@ public class SlashCommand extends ListenerAdapter {
 
                 for (int i = 0; i < MapleFarm.userArrayList.size(); i++) {
                     mesokrBuild.clear();
-                    mesokrBuild.setTitle(option+ "에 대한 검색 결과\n" +"Page : " + i + "/" + MapleFarm.userArrayList.size());
+                    mesokrBuild.setTitle(option+ "에 대한 검색 결과\n" +"Page : " + (i+1) + "/" + MapleFarm.userArrayList.size());
                     mesokrBuild.setColor(Color.MAGENTA);
                     mesokrBuild.addField("농장 이름",MapleFarm.userArrayList.get(i), true);
                     mesokrBuild.addField("마리수",MapleFarm.numList.get(i), true);
@@ -86,16 +86,7 @@ public class SlashCommand extends ListenerAdapter {
                     mesokrBuild.setFooter("https://meso.kr");
                     pages.add(new InteractPage(mesokrBuild.build()));
                 }
-                System.out.println(pages.size());
-
-//                event.reply("농장 목록 조회 중...").setEphemeral(true) // reply or acknowledge
-//                        .flatMap(v ->
-//                                //eventCheck.eventBuilder
-//                                event.getHook().editOriginalEmbeds((MessageEmbed) pages.get(0).getContent())
-//                        ).queue(success -> {
-//                            Pages.paginate(success, pages, /* Use buttons? */ true);
-//                        });
-
+                event.reply("농장 목록 조회 중...").setEphemeral(false).queue();
                 event.getChannel().sendMessageEmbeds((MessageEmbed) pages.get(0).getContent()).queue(success -> {
                     Pages.paginate(success, pages, /* Use buttons? */ true);
                 });

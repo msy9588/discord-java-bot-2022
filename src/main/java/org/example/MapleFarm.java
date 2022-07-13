@@ -24,7 +24,7 @@ public class MapleFarm {
             numList.clear();
             String url = "https://meso.kr/monster.php?n="+msg;
             System.out.println(url);
-            Document doc = Jsoup.connect(url).get();
+            Document doc = Jsoup.connect(url).header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.141 Whale/3.15.136.29 Safari/537.36").timeout(3000).get();
             int count_DIV1 = doc.select("div[class=\"m-5\"]").get(0).select("table").get(1).select("button").size();
             System.out.println(count_DIV1);
             for (int i = 0; i < count_DIV1; i++) {
@@ -34,10 +34,8 @@ public class MapleFarm {
                 farmStringBuliderUser.append("\n").append(userName);
                 farmStringBuliderDay.append("\n").append(d_day);
                 farmStringBuliderNum.append("\n").append(num);
-                System.out.println(i + " : " + userName);
                 if(i != 0) {
                     if(i % 5 == 0) {
-                        System.out.println(i);
                         userArrayList.add(String.valueOf(farmStringBuliderUser));
                         dayArrayList.add(String.valueOf(farmStringBuliderDay));
                         numList.add(String.valueOf(farmStringBuliderNum));
@@ -47,7 +45,6 @@ public class MapleFarm {
                     }
                 }
             }
-            System.out.println(userArrayList);
         } catch (Exception e) {
             e.printStackTrace();
         }
