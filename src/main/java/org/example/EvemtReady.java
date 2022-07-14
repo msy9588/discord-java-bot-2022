@@ -29,7 +29,7 @@ public class EvemtReady extends ListenerAdapter {
                 for (int i = 0; i < eventCheck.eventNameList.size(); i++) {
                     if(eventCheck.d_dayList.get(i).equals("1")) {
                         if(!eventCheck.eventNameList.get(i).equals("썬데이 메이플")) {
-                            if(s.equals("12:01:오전")) {
+                            if(s.equals("12:30:오전")) {
                                 eventD_Day.setColor(Color.red);
                                 eventD_Day.setTitle("이벤트 기간이 1일밖에 남지 않았습니다!!! ");
                                 eventD_Day.appendDescription(i+1+". "+"["+ eventCheck.eventNameList.get(i) +"]("+ eventCheck.eventUrlList.get(i) +") \n" + eventCheck.strNowDateList.get(i)+" ("+ eventCheck.eventDataList.get(i) + ") \n \n");
@@ -51,7 +51,7 @@ public class EvemtReady extends ListenerAdapter {
         };
         Timer timer = new Timer("Timer");
         long delay = 1000L;
-        long period = 10000;
+        long period = 60000L;
         System.out.println(LocalDateTime.now() + " : 갱신 대기중....");
         timer.scheduleAtFixedRate(task, delay, period);
 

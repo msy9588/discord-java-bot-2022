@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class Notice extends EvemtReady{
+public class Notice {
     public void onReady(@NotNull ReadyEvent event) {
         HashMap<String, String> map = new HashMap<>();
             TimerTask task = new TimerTask() {

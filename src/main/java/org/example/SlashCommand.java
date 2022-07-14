@@ -1,10 +1,12 @@
 package org.example;
 
 import com.github.ygimenez.method.Pages;
+import com.github.ygimenez.model.ButtonWrapper;
 import com.github.ygimenez.model.InteractPage;
 import com.github.ygimenez.model.Page;
+import com.github.ygimenez.model.ThrowingConsumer;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.Emoji;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -12,6 +14,7 @@ import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 public class SlashCommand extends ListenerAdapter {
@@ -75,7 +78,6 @@ public class SlashCommand extends ListenerAdapter {
 
                 ArrayList<Page> pages = new ArrayList<>();
                 EmbedBuilder mesokrBuild  = new EmbedBuilder();
-
                 for (int i = 0; i < MapleFarm.userArrayList.size(); i++) {
                     mesokrBuild.clear();
                     mesokrBuild.setTitle(option+ "에 대한 검색 결과\n" +"Page : " + (i+1) + "/" + MapleFarm.userArrayList.size());
@@ -86,13 +88,13 @@ public class SlashCommand extends ListenerAdapter {
                     mesokrBuild.setFooter("https://meso.kr");
                     pages.add(new InteractPage(mesokrBuild.build()));
                 }
+
                 event.reply("농장 목록 조회 중...").setEphemeral(false).queue();
                 event.getChannel().sendMessageEmbeds((MessageEmbed) pages.get(0).getContent()).queue(success -> {
                     Pages.paginate(success, pages, /* Use buttons? */ true);
                 });
 
             }
-
             if(event.getOption("조합식") != null) {
                 OptionMapping monsterName = event.getOption("조합식");
                 String option = Objects.requireNonNull(monsterName).getAsString();
@@ -103,6 +105,15 @@ public class SlashCommand extends ListenerAdapter {
                                 event.getChannel().sendMessageEmbeds(MapleFarm.wachanBuild.build())
                         ).queue();
             }
+        } else if(event.getName().equals("유저검색")) {
+            OptionMapping userName = event.getOption("닉네임");
+            String userNameStr = Objects.requireNonNull(userName).getAsString();
+            UserSearch.Search(userNameStr);
+
+            event.reply("검색 내용").setEphemeral(false)
+                    .flatMap(v ->
+                            event.getChannel().sendMessageEmbeds(UserSearch.userBuider.build())
+                    ).queue();
         }
     }
 }
