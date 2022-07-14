@@ -31,7 +31,7 @@ public class Main extends ListenerAdapter  {
         jda.addEventListener(new SlashCommand());
         // 1초마다 이벤트 불러오기 + 공지 띄우기
         jda.addEventListener(new EvemtReady());
-
+        // 커멘드
         jda.addEventListener(new fileRead());
         // 공홈 공지
 //        jda.addEventListener(new Notice());

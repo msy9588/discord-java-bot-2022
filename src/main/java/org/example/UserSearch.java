@@ -56,6 +56,7 @@ public class UserSearch {
             String world_ranking = doc.select("div[class=\"col-lg-2 col-md-4 col-sm-4 col-6 mt-3\"]").get(1).select("span").text();
             String job_ranking_world = doc.select("div[class=\"col-lg-2 col-md-4 col-sm-4 col-6 mt-3\"]").get(2).select("span").text();
             String job_ranking_overall = doc.select("div[class=\"col-lg-2 col-md-4 col-sm-4 col-6 mt-3\"]").get(3).select("span").text();
+            String listUpdate = doc.select("span[class=\"d-block font-weight-light \"]").text();
             System.out.println("종합 랭킹 : " + overall_ranking);
 
             System.out.println(user_guild);
@@ -71,8 +72,8 @@ public class UserSearch {
             System.out.println(lastUpateJ);
 
             //=============================무릉==================================
-            String user_mr = null;
-            String user_mr_hr = null;
+            String user_mr = "-";
+            String user_mr_hr = "-";
             try {
                 Element gg_synthesis_mr_div = gg_synthesis_div.select("div[class=\"col-lg-3 col-6 mt-3 px-1\"]").get(0);
                 Element gg_synthesis_mr_div_footer = gg_synthesis_mr_div.select("footer[class=\"user-summary-box-footer\"]").get(0);
@@ -97,8 +98,8 @@ public class UserSearch {
             }
 
             //=============================더시드==================================
-            String user_the_hr = null;
-            String user_the = null;
+            String user_the_hr = "-";
+            String user_the = "-";
             try {
                 Element gg_synthesis_the_div = gg_synthesis_div.select("div[class=\"col-lg-3 col-6 mt-3 px-1\"]").get(1);
                 Element gg_synthesis_the_div_footer = gg_synthesis_the_div.select("footer[class=\"user-summary-box-footer\"]").get(0);
@@ -125,8 +126,8 @@ public class UserSearch {
 
             //=============================유니온===================================
             String user_un_img = null;
-            String user_un = null;
-            String user_un_lv = null;
+            String user_un = "-";
+            String user_un_lv = "-";
             try {
                 Element gg_synthesis_un_div = gg_synthesis_div.select("div[class=\"col-lg-3 col-6 mt-3 px-1\"]").get(2);
                 Element gg_synthesis_un_div_footer = gg_synthesis_un_div.select("footer[class=\"user-summary-box-footer\"]").get(0);
@@ -183,7 +184,7 @@ public class UserSearch {
 
             userBuider.setThumbnail(img.replace("https://", "http://"));
             userBuider.appendDescription(serverStr + " | " + name + "\n");
-            userBuider.appendDescription(user_Lv + " | " + user_op + " | " + user_pop);
+            userBuider.appendDescription(user_Lv + " | " + user_op + " | " + user_pop + "\n" + listUpdate);
             userBuider.addField("길드", user_guild, true);
             userBuider.addField("종합랭킹", overall_ranking, true);
             userBuider.addField("월드랭킹", world_ranking, true);
