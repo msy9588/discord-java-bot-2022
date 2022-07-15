@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -21,7 +22,10 @@ public class eventCheck extends Main {
     static ArrayList<String> eventDataList = new ArrayList<>();
     static ArrayList<String> d_dayList = new ArrayList<>();
 
+    static String sunDayImg = "";
+
     public static void eventCrolling() {
+        sunDayImg = "";
         eventNameList.clear();
         eventUrlList.clear();
         strNowDateList.clear();
@@ -52,6 +56,16 @@ public class eventCheck extends Main {
                 strNowDateList.add(strNowDate);
                 eventDataList.add(date_event);
                 d_dayList.add(String.valueOf(d_day));
+            }
+
+            for (int i = 0; i < eventNameList.size(); i++) {
+                if(eventNameList.get(i).contains("스페셜 썬데이 메이플")){
+                    sunDayImg = doc.select("div[class=\"d-inline-block\"]").get(i).select("a").select("img").attr("src").replace("https", "http");
+                    System.out.println(sunDayImg);
+                    System.out.println("스페셜 썬데이 메이플");
+                } else if(eventNameList.get(i).contains("썬데이 메이플")) {
+                    sunDayImg = doc.select("div[class=\"d-inline-block\"]").get(i).select("a").select("img").attr("src").replace("https", "http");
+                }
             }
             eventBuilder.clear();
             eventBuilder.setColor(Color.MAGENTA);

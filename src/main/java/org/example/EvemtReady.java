@@ -14,6 +14,8 @@ import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static org.example.eventCheck.sunDayImg;
+
 public class EvemtReady extends ListenerAdapter {
     public void onReady(@NotNull ReadyEvent event) {
         TimerTask task = new TimerTask() {
@@ -29,7 +31,7 @@ public class EvemtReady extends ListenerAdapter {
                 for (int i = 0; i < eventCheck.eventNameList.size(); i++) {
                     if(eventCheck.d_dayList.get(i).equals("1")) {
                         if(!eventCheck.eventNameList.get(i).equals("썬데이 메이플")) {
-                            if(s.equals("12:30:오전")) {
+                            if(s.equals("06:18:오후")) {
                                 eventD_Day.setColor(Color.red);
                                 eventD_Day.setTitle("이벤트 기간이 1일밖에 남지 않았습니다!!! ");
                                 eventD_Day.appendDescription(i+1+". "+"["+ eventCheck.eventNameList.get(i) +"]("+ eventCheck.eventUrlList.get(i) +") \n" + eventCheck.strNowDateList.get(i)+" ("+ eventCheck.eventDataList.get(i) + ") \n \n");
@@ -38,12 +40,33 @@ public class EvemtReady extends ListenerAdapter {
 //                                jda.getTextChannelsByName("테스트", true).get(0).sendMessageEmbeds(eventD_Day.build()).queue();
                                 jda.getTextChannelsByName("봇-공지", true).get(0).sendMessage("@everyone").queue();
                                 jda.getTextChannelsByName("봇-공지", true).get(0).sendMessageEmbeds(eventD_Day.build()).queue();
+
                             }
                         }
                     }
-                    if(eventCheck.eventNameList.get(i).equals("썬데이 메이플")) {
-                        sunDayMaple.setColor(Color.MAGENTA);
-                        sunDayMaple.setTitle("썬데이 메이플");
+                    sunDayMaple.setColor(Color.MAGENTA);
+                    JDA jda = event.getJDA();
+                    if(s.equals("06:18:오후")) {
+                        SimpleDateFormat day = new SimpleDateFormat("DD월 MM일");
+                        String s2 = simpl.format(day);
+                        if (eventCheck.eventNameList.get(i).contains("스페셜 썬데이 메이플")) {
+                            if(s2.equals("07월 17일") || s2.equals("07월 31일") || s2.equals("08월 14일") || s2.equals("08월 28일") ) {
+                                sunDayMaple.setTitle("스페셜 썬데이 메이플");
+                                sunDayMaple.setImage(sunDayImg);
+                                if(s2.equals("07월 17일") ) {
+
+                                }
+
+                                jda.getTextChannelsByName("봇-공지", true).get(0).sendMessage("@everyone").queue();
+                                jda.getTextChannelsByName("봇-공지", true).get(0).sendMessageEmbeds(sunDayMaple.build()).queue();
+                            }
+
+                        } else if (eventCheck.eventNameList.get(i).contains("썬데이 메이플")) {
+                            sunDayMaple.setTitle("썬데이 메이플");
+                            sunDayMaple.setImage(sunDayImg);
+                            jda.getTextChannelsByName("봇-공지", true).get(0).sendMessage("@everyone").queue();
+                            jda.getTextChannelsByName("봇-공지", true).get(0).sendMessageEmbeds(sunDayMaple.build()).queue();
+                        }
                     }
                 }
             }
