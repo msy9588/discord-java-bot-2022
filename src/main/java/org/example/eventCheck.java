@@ -34,7 +34,7 @@ public class eventCheck extends Main {
             String url = "https://maple.gg/";
             Document doc = Jsoup.connect(url).get();
             int eventCount = doc.select("div[class=\"d-inline-block\"]").size();
-
+            System.out.println("eventCrolling 접속");
             for (int i = 0; i < eventCount; i++) {
                 // 이벤트 이름 및 날짜
                 String text_event = doc.select("div[class=\"d-inline-block\"]").get(i).select("div").get(0).text();
@@ -60,11 +60,23 @@ public class eventCheck extends Main {
 
             for (int i = 0; i < eventNameList.size(); i++) {
                 if(eventNameList.get(i).contains("스페셜 썬데이 메이플")){
-                    sunDayImg = doc.select("div[class=\"d-inline-block\"]").get(i).select("a").select("img").attr("src").replace("https", "http");
-                    System.out.println(sunDayImg);
-                    System.out.println("스페셜 썬데이 메이플");
-                } else if(eventNameList.get(i).contains("썬데이 메이플")) {
-                    sunDayImg = doc.select("div[class=\"d-inline-block\"]").get(i).select("a").select("img").attr("src").replace("https", "http");
+                    SimpleDateFormat dateS_SunDay = new SimpleDateFormat("MM월 dd일");
+                    Date date = new Date();
+                    String sun = dateS_SunDay.format(date);
+                    if(sun.equals("7월 31일") || sun.equals("8월 14일") || sun.equals("8월 28일")) {
+                        sunDayImg = doc.select("div[class=\"d-inline-block\"]").get(i).select("a").select("img").attr("src").replace("https", "http");
+                        System.out.println(sunDayImg);
+                        System.out.println("스페셜 썬데이 메이플");
+                    }
+                }
+                if(eventNameList.get(i).equals("썬데이 메이플")) {
+                    String viewGG = doc.select("div[class=\"d-inline-block\"]").get(i).select("a").attr("href");
+                    Document viewGGDOC = Jsoup.connect(viewGG).get();
+                    String nexonUrl = viewGGDOC.select("a[class=\"mt-2\"]").attr("href");
+                    Document nexonUrlDOC = Jsoup.connect(nexonUrl).get();
+                    sunDayImg = nexonUrlDOC.select("div[class=\"new_board_con\"]").select("img").attr("src");
+                } else if(!eventNameList.contains("썬데이 메이플")) {
+                    EvemtReady.sunDayMapleBooleon = true;
                 }
             }
             eventBuilder.clear();

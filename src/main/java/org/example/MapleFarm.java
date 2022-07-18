@@ -81,7 +81,7 @@ public class MapleFarm {
                     wachanBuild.addField("결과",monster+" ( "+monsterGss+" ) \n" + monsterAbility, false);
                     wachanBuild.addField("조합 몬스터",sum1+" ( "+sumGss1+" ) \n" + sumAbility1, true);
                     wachanBuild.addField("조합 몬스터",sum2+" ( "+sumGss2+" ) \n" + sumAbility2, true);
-                    wachanBuild.setFooter("http://wachan.me/farm.php");
+                    wachanBuild.setFooter("http://wachan.me/farm.php", "http://wachan.me/%EC%95%84%EB%AC%B4_%EC%99%80%EC%A8%A9.png");
                 }
             }
 

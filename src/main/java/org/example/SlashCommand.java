@@ -85,7 +85,7 @@ public class SlashCommand extends ListenerAdapter {
                     mesokrBuild.addField("농장 이름",MapleFarm.userArrayList.get(i), true);
                     mesokrBuild.addField("마리수",MapleFarm.numList.get(i), true);
                     mesokrBuild.addField("유호 기간",MapleFarm.dayArrayList.get(i), true);
-                    mesokrBuild.setFooter("https://meso.kr");
+                    mesokrBuild.setFooter("https://meso.kr", "https://meso.kr/apple-icon-57x57.png");
                     pages.add(new InteractPage(mesokrBuild.build()));
                 }
 
@@ -105,7 +105,7 @@ public class SlashCommand extends ListenerAdapter {
                                 event.getChannel().sendMessageEmbeds(MapleFarm.wachanBuild.build())
                         ).queue();
             }
-        } else if(event.getName().equals("유저검색")) {
+        } else if(event.getName().equals("정보")) {
             OptionMapping userName = event.getOption("닉네임");
             String userNameStr = Objects.requireNonNull(userName).getAsString();
             UserSearch.Search(userNameStr);
@@ -113,6 +113,22 @@ public class SlashCommand extends ListenerAdapter {
             event.reply("검색 내용").setEphemeral(false)
                     .flatMap(v ->
                             event.getChannel().sendMessageEmbeds(UserSearch.userBuider.build())
+                    ).queue();
+        } else if(event.getName().equals("무릉")) {
+            OptionMapping userName = event.getOption("닉네임");
+            String userNameStr = Objects.requireNonNull(userName).getAsString();
+            UserSearch.Search(userNameStr);
+            event.reply("검색 내용").setEphemeral(false)
+                    .flatMap(v ->
+                            event.getChannel().sendMessageEmbeds(UserSearch.userBuiderMr.build())
+                    ).queue();
+        } else if(event.getName().equals("유니온")) {
+            OptionMapping userName = event.getOption("닉네임");
+            String userNameStr = Objects.requireNonNull(userName).getAsString();
+            UserSearch.Search(userNameStr);
+            event.reply("검색 내용").setEphemeral(false)
+                    .flatMap(v ->
+                            event.getChannel().sendMessageEmbeds(UserSearch.userBuiderCoin.build())
                     ).queue();
         }
     }

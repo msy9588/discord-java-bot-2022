@@ -10,16 +10,16 @@ import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 
 import javax.security.auth.login.LoginException;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.List;
 //import net.dv8tion.jda.api.interactions.commands.build.Commands;
 
 public class Main extends ListenerAdapter  {
-    public static void main(String[] args) throws LoginException, InvalidHandlerException {
+    public static void main(String[] args) throws LoginException, InvalidHandlerException, InterruptedException {
         // 봇의 토근을 저장한다.
         token token = new token();
         JDA jda = JDABuilder.createDefault(token.tokenStr).build();
         System.out.println("======접속 완료======");
+
         // / 커멘드1
         jda.addEventListener(new Main());
 
@@ -51,9 +51,16 @@ public class Main extends ListenerAdapter  {
                         .addOption(OptionType.STRING ,"몬스터이름", "몬스터이름")
                         .addOption(OptionType.STRING ,"조합식", "조합식")
                 )
-                .addCommands(new CommandData("유저검색", "메이플 인게임 정보 검색")
+                .addCommands(new CommandData("정보", "메이플 인게임 정보 검색")
                         .addOption(OptionType.STRING ,"닉네임", "닉네임")
-                ).queue();
+                )
+                .addCommands(new CommandData("무릉", "사용자의 최고 무릉")
+                        .addOption(OptionType.STRING ,"닉네임", "닉네임")
+                )
+                .addCommands(new CommandData("유니온", "해당 유저의 유니온 상세")
+                        .addOption(OptionType.STRING ,"닉네임", "닉네임")
+                )
+                .queue();
     }
 
 //        jda.updateCommands()
