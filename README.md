@@ -8,6 +8,7 @@ JDA을 이용한 메이플스토리 DiscordBot 프로그램
 | JAVA   | 11.0.14   |
 | JDA    | 4.4.0_352 |
 | mysql  | 8.0.29    |
+
 *자세한 정보는 build.gradle 에서확인해주세요*
 
 ## 개요
