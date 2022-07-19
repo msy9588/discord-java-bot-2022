@@ -15,7 +15,7 @@
 [봇이담. 초대 링크](https://discord.com/oauth2/authorize?client_id=961659381789909043&scope=bot&permissions=0)
 을 클릭하여 서버에 추가 한다.
 
-## 사용 예제
+## 🚩 사용 방법
 
 **/ 명령어를 치면 해당 명령어 리스트가 나옵니다.**
 
@@ -37,18 +37,17 @@ _더 많은 예제와 사용법은 [페치 노트](https://github.com/dudqls5271
 > 배포&nbsp; 방법: JAR
 
 ## 🧩 업데이트 내역
-
-* 0.1.2
+* 
+* [0.1.1](https://github.com/dudqls5271/discord-java-bot-2022/tree/master/PatchNote/2022_07_12)
   * 추가: `농장 검색` 기능이 추가
     * EX) /농장 [몬스터이름, 조합식] [몬스터 이름]
-  * 수정: `커맨드`가 변경
-    * 불필요한 커멘드가 삭제
-* 0.1.1
   * 추가: `무기 추가 옵션` 기능 추가
     * Ex) /추옵 무기이름
+  * 수정: `커맨드`가 변경
+    * 불필요한 커멘드가 삭제
   * 수정: 기존 `커맨드`가 변경
     * /커맨드 [전부, 히든] (커맨드 이름)
-* 0.1.0
+* [0.1.0](https://github.com/dudqls5271/discord-java-bot-2022/blob/master/PatchNote/2022_06_27/README_2022_06_27.md)
     * 최초 배포
 * 0.0.1
     * 작업 진행 중
