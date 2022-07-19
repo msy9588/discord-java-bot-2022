@@ -1,4 +1,5 @@
 # 메이플스토리 디스코드 봇 [봇이담.]
+~~전 이름 : 아부부 <br>~~
 
 메이플 관런 봇 봇이답. 입니다.<br>
 
@@ -29,6 +30,8 @@ _더 많은 예제와 사용법은 [페치 노트](https://github.com/dudqls5271
 | <img src="https://img.shields.io/badge/MySql-4479A1?style=flat-square&logo=MySql&logoColor=white"/></a>  | 8.0.29   |
 | <img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=flat-square&logo=IntelliJ IDEA&logoColor=white"/></a>  | 2022.1.1 |
 
+## 🖥 서버
+
 ## 🧩 업데이트 내역
 
 * 0.1.2
@@ -47,15 +50,15 @@ _더 많은 예제와 사용법은 [페치 노트](https://github.com/dudqls5271
     * 작업 진행 중
 
 
-## ⭐️개발자 정보 
+## ⭐️개발자 정보
+해당 이미지를 클릭하면 이동 합니다. <br/>
 
-**버그 제보 환영 <br>**
+<a href="https://twitter.com/maple_Dkepf"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=flat-square&logo=Twitter&logoColor=white"/></a>&nbsp;
+<a href="discordapp.com/users/249166055316914177"><img src="https://img.shields.io/badge/Discord-5865F2?style=flat-square&logo=Discord&logoColor=white"/></a>&nbsp;
+<a href="mailto:youngbin5271@gmail.com"><img src="https://img.shields.io/badge/Gmail-EA4335?style=flat-square&logo=Gmail&logoColor=white"/></a> &nbsp;
+<br>
 
-트위터 : [@트위터](https://twitter.com/maple_Dkepf)<br>
-이메일 : [youngbin5271@gmail.com](youngbin5271@gmail.com)<br>
-discord : [영빈#1296](discordapp.com/users/249166055316914177)
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+_**버그 제보 환영**_
 
 
 ## 크롤링 및 AIP 사용
