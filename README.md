@@ -5,7 +5,7 @@
 <img src="https://img.shields.io/badge/MySql-4479A1?style=flat-square&logo=MySql&logoColor=white"/></a> &nbsp;
 <img src="https://img.shields.io/badge/JAVA-007396?style=flat-square&logo=Java&logoColor=white"/></a> &nbsp;
 
-![](PatchNote/icon.png)
+![](PatchNote/bag.png)
 
 ## 설치 방법!
 
