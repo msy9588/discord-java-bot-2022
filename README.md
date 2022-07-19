@@ -1,5 +1,8 @@
 # 메이플스토리 디스코드 봇 [봇이담.]
-> 메이플 관런 봇 봇이답. 입니다.
+> 메이플 관런 봇 봇이답. 입니다.<br>
+> 
+> **_해당 코드는 이영빈(진동아델)에 의해 만들어졌으며 모든 소스코드의 저작권은 이영빈(진동아델)에게 있습니다._**
+
 
 ![](PatchNote/bag.png)
 
@@ -40,26 +43,25 @@ _더 많은 예제와 사용법은 [페치 노트](https://github.com/dudqls5271
 * 0.0.1
     * 작업 진행 중
 
-## 정보
 
-이름 – [@트위터 주소](https://twitter.com/dbader_org) – 이메일주소@example.com
+## 개발자 정보 
 
-XYZ 라이센스를 준수하며 ``LICENSE``에서 자세한 정보를 확인할 수 있습니다.
+**버그 제보 환영 <br>**
+
+트위터 : [@트위터](https://twitter.com/maple_Dkepf)<br>
+이메일 : [youngbin5271@gmail.com](youngbin5271@gmail.com)<br>
+discord : 영빈#1296
 
 [https://github.com/yourname/github-link](https://github.com/dbader/)
 
-## 기여 방법
 
-1. (<https://github.com/yourname/yourproject/fork>)을 포크합니다.
-2. (`git checkout -b feature/fooBar`) 명령어로 새 브랜치를 만드세요.
-3. (`git commit -am 'Add some fooBar'`) 명령어로 커밋하세요.
-4. (`git push origin feature/fooBar`) 명령어로 브랜치에 푸시하세요.
-5. 풀리퀘스트를 보내주세요.
+### 크롤링 및 AIP 사용
+| 홈페이지 이름           | URL |
+|-------------------|-----|
+| MapleGG           | https://maple.gg   |
+| NexonMapleStory   | https://maplestory.nexon.com/Home/Main |
+| meso.kr / 몬스터라이프 검색 | https://meso.kr/.0.29 |
+| 와쨩의 메이플 정보 센터_농장  | http://wachan.me/farm.php |
 
-<!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/yourname/yourproject/wiki
+
+
