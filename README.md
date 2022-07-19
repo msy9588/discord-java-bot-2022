@@ -50,7 +50,7 @@ _더 많은 예제와 사용법은 [페치 노트](https://github.com/dudqls5271
 
 트위터 : [@트위터](https://twitter.com/maple_Dkepf)<br>
 이메일 : [youngbin5271@gmail.com](youngbin5271@gmail.com)<br>
-discord : 영빈#1296
+discord : [영빈#1296](discordapp.com/users/249166055316914177)
 
 [https://github.com/yourname/github-link](https://github.com/dbader/)
 
