@@ -1,29 +1,76 @@
-# 아부부 [discord_Bot]
+# 프로젝트명
+> 메이플 관런 봇 봇이답. 입니다.
 
-JDA을 이용한 메이플스토리 DiscordBot 프로그램
+<img src="https://img.shields.io/badge/JDA-5865F2?style=flat-square&logo=Discord&logoColor=white"/></a> &nbsp;
+<img src="https://img.shields.io/badge/MySql-4479A1?style=flat-square&logo=MySql&logoColor=white"/></a> &nbsp;
+<img src="https://img.shields.io/badge/JAVA-007396?style=flat-square&logo=Java&logoColor=white"/></a> &nbsp;
+
+![](PatchNote/icon.png)
+
+## 설치 방법!
+
+OS X & 리눅스:
+
+```sh
+npm install my-crazy-module --save
+```
+
+윈도우:
+
+```sh
+edit autoexec.bat
+```
+
+## 사용 예제
+
+스크린 샷과 코드 예제를 통해 사용 방법을 자세히 설명합니다.
+
+_더 많은 예제와 사용법은 [Wiki][wiki]를 참고하세요._
+
+## 개발 환경 설정
+
+모든 개발 의존성 설치 방법과 자동 테스트 슈트 실행 방법을 운영체제 별로 작성합니다.
+
+```sh
+make install
+npm test
+```
+
+## 업데이트 내역
+
+* 0.2.1
+    * 수정: 문서 업데이트 (모듈 코드 동일)
+* 0.2.0
+    * 수정: `setDefaultXYZ()` 메서드 제거
+    * 추가: `init()` 메서드 추가
+* 0.1.1
+  * 버그 수정: `baz()` 메서드 호출 시 부팅되지 않는 현상 (@컨트리뷰터 감사합니다!)
+* 0.1.0
+    * 첫 출시
+    * 수정: `foo()` 메서드 네이밍을 `bar()`로 수정
+* 0.0.1
+    * 작업 진행 중
 
 ## 정보
-| 프로그램 명 | 버전    |
-|--------|-----------|
-| JAVA   | 11.0.14   |
-| JDA    | 4.4.0_352 |
-| mysql  | 8.0.29    |
 
-*자세한 정보는 build.gradle 에서확인해주세요*
+이름 – [@트위터 주소](https://twitter.com/dbader_org) – 이메일주소@example.com
 
-### 크롤링 및 AIP 사용
-| 홈페이지 이름           | URL |
-|-------------------|-----|
-| MapleGG           | https://maple.gg   |
-| NexonMapleStory   | https://maplestory.nexon.com/Home/Main |
-| meso.kr / 몬스터라이프 검색 | https://meso.kr/.0.29 |
-| 와쨩의 메이플 정보 센터_농장  | http://wachan.me/farm.php |
+XYZ 라이센스를 준수하며 ``LICENSE``에서 자세한 정보를 확인할 수 있습니다.
 
-## 개요
-메이플스토리 유저들을 위한 discord Bot 입니다. <br/>
-간단한 사용자 정보와, 농장 정보, 이벤트 목록 등을 검색이 가능합니다.
+[https://github.com/yourname/github-link](https://github.com/dbader/)
 
-기존에 사용하던 메봇? 이 작동을 안하게 되어 나도 한번 만들어 볼까 라는 생각으로 만들게 되었습니다.
+## 기여 방법
 
-## 사용법
-https://discord.com/api/oauth2/authorize?client_id=961659381789909043&permissions=8&scope=applications.commands%20bot
+1. (<https://github.com/yourname/yourproject/fork>)을 포크합니다.
+2. (`git checkout -b feature/fooBar`) 명령어로 새 브랜치를 만드세요.
+3. (`git commit -am 'Add some fooBar'`) 명령어로 커밋하세요.
+4. (`git push origin feature/fooBar`) 명령어로 브랜치에 푸시하세요.
+5. 풀리퀘스트를 보내주세요.
+
+<!-- Markdown link & img dfn's -->
+[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/datadog-metrics
+[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
+[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
+[wiki]: https://github.com/yourname/yourproject/wiki
