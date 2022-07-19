@@ -55,7 +55,7 @@ discord : 영빈#1296
 [https://github.com/yourname/github-link](https://github.com/dbader/)
 
 
-### 크롤링 및 AIP 사용
+## 크롤링 및 AIP 사용
 | 홈페이지 이름           | URL |
 |-------------------|-----|
 | MapleGG           | https://maple.gg   |
