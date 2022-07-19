@@ -1,53 +1,42 @@
-# 프로젝트명
+# 메이플스토리 디스코드 봇 [봇이담.]
 > 메이플 관런 봇 봇이답. 입니다.
-
-<img src="https://img.shields.io/badge/JDA-5865F2?style=flat-square&logo=Discord&logoColor=white"/></a> &nbsp;
-<img src="https://img.shields.io/badge/MySql-4479A1?style=flat-square&logo=MySql&logoColor=white"/></a> &nbsp;
-<img src="https://img.shields.io/badge/JAVA-007396?style=flat-square&logo=Java&logoColor=white"/></a> &nbsp;
 
 ![](PatchNote/bag.png)
 
-## 설치 방법!
+## 초대 방법!
 
-OS X & 리눅스:
-
-```sh
-npm install my-crazy-module --save
-```
-
-윈도우:
-
-```sh
-edit autoexec.bat
-```
+[봇이담. 초대 링크](https://discord.com/oauth2/authorize?client_id=961659381789909043&scope=bot&permissions=0)
+을 클릭하여 서버에 추가 한다.
 
 ## 사용 예제
 
-스크린 샷과 코드 예제를 통해 사용 방법을 자세히 설명합니다.
+**/ 명령어를 치면 해당 명령어 리스트가 나옵니다.**
 
-_더 많은 예제와 사용법은 [Wiki][wiki]를 참고하세요._
+_더 많은 예제와 사용법은 [페치 노트](https://github.com/dudqls5271/discord-java-bot-2022/tree/master/PatchNote)를 참고하세요._
 
-## 개발 환경 설정
+## 개발 환경 
 
-모든 개발 의존성 설치 방법과 자동 테스트 슈트 실행 방법을 운영체제 별로 작성합니다.
-
-```sh
-make install
-npm test
-```
+| 프로그램 명 | 버전       |
+|--------|----------|
+| <img src="https://img.shields.io/badge/JAVA-007396?style=flat-square&logo=Java&logoColor=white"/></a>   | 11.0.14  |
+|<img src="https://img.shields.io/badge/JDA-5865F2?style=flat-square&logo=Discord&logoColor=white"/></a>   | 4.4.0_352 |
+| <img src="https://img.shields.io/badge/MySql-4479A1?style=flat-square&logo=MySql&logoColor=white"/></a>  | 8.0.29   |
+| <img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=flat-square&logo=IntelliJ IDEA&logoColor=white"/></a>  | 2022.1.1 |
 
 ## 업데이트 내역
 
-* 0.2.1
-    * 수정: 문서 업데이트 (모듈 코드 동일)
-* 0.2.0
-    * 수정: `setDefaultXYZ()` 메서드 제거
-    * 추가: `init()` 메서드 추가
+* 0.1.2
+  * 추가: `농장 검색` 기능이 추가
+    * EX) /농장 [몬스터이름, 조합식] [몬스터 이름]
+  * 수정: `커맨드`가 변경
+    * 불필요한 커멘드가 삭제
 * 0.1.1
-  * 버그 수정: `baz()` 메서드 호출 시 부팅되지 않는 현상 (@컨트리뷰터 감사합니다!)
+  * 추가: `무기 추가 옵션` 기능 추가
+    * Ex) /추옵 무기이름
+  * 수정: 기존 `커맨드`가 변경
+    * /커맨드 [전부, 히든] (커맨드 이름)
 * 0.1.0
-    * 첫 출시
-    * 수정: `foo()` 메서드 네이밍을 `bar()`로 수정
+    * 최초 배포
 * 0.0.1
     * 작업 진행 중
 
