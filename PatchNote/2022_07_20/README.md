@@ -22,3 +22,5 @@
 
 자세한 설명의 사진을 참고 하세요
 ![요약](2022-07-20.png)
+
+[패치노트](https://github.com/dudqls5271/discord-java-bot-2022/tree/master/PatchNote)
