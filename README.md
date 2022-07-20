@@ -35,6 +35,13 @@ _더 많은 예제와 사용법은 [페치 노트](https://github.com/dudqls5271
 > 배포&nbsp; 방법: JAR
 
 ## 🧩 업데이트 내역
+* [0.1.2](https://github.com/dudqls5271/discord-java-bot-2022/tree/master/PatchNote/2022_07_20)
+  * 추가: `유저 검색` 기능이 추가
+    * Ex) /정보 (내용)
+  * 추가: `유저 무릉 검색` 기능이 추가
+    * Ex) /무릉 (내용)
+  * 추가: `유저 유니온 검색` 기능이 추가
+    * Ex) /유니온 (내용)
 * [0.1.1](https://github.com/dudqls5271/discord-java-bot-2022/tree/master/PatchNote/2022_07_12)
   * 추가: `농장 검색` 기능이 추가
     * EX) /농장 [몬스터이름, 조합식] [몬스터 이름]
