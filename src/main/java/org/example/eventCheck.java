@@ -87,6 +87,7 @@ public class eventCheck extends Main {
                 eventBuilder.appendDescription(i+1+". "+"["+ eventNameList.get(i) +"]("+ eventUrlList.get(i) +") \n" + strNowDateList.get(i)+" ("+ eventDataList.get(i) + ") \n \n");
             }
         } catch (Exception e) {
+
             e.printStackTrace();
         }
     }
