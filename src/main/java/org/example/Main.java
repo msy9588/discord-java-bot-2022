@@ -10,9 +10,11 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 import net.dv8tion.jda.api.interactions.components.selections.SelectOption;
 
 import javax.security.auth.login.LoginException;
+import java.util.ArrayList;
 import java.util.List;
 //import net.dv8tion.jda.api.interactions.commands.build.Commands;
 
@@ -32,13 +34,14 @@ public class Main extends ListenerAdapter  {
 //        jda.addEventListener(new Log4());
         // / 커멘드 실행
         jda.addEventListener(new SlashCommand());
-        // 1초마다 이벤트 불러오기 + 공지 띄우기
-//        jda.addEventListener(new EvemtReady());
+         //1초마다 이벤트 불러오기 + 공지 띄우기
+        jda.addEventListener(new EvemtReady());
         // 커멘드
         jda.addEventListener(new fileRead());
         // 공홈 공지
 //        jda.addEventListener(new Notice());
 
+        ArrayList<String> test = new ArrayList<>();
 
         Pages.activate(PaginatorBuilder.createSimplePaginator(jda));
         jda.updateCommands()
@@ -70,7 +73,8 @@ public class Main extends ListenerAdapter  {
                                 new OptionData(OptionType.STRING, "선택", "다음 항목을 선택 해주세요")
                                         .addChoice("로얄", "로얄")
                                         .addChoice("골드애플", "골드애플")
-                                        .addChoice("원더베리", "원더베리")
+                                        .addChoice("원더베리", "원더베리"),
+                                new OptionData(OptionType.INTEGER, "횟수", "횟수 설정(1 ~ 11)")
                         )
                 )
                 .queue();

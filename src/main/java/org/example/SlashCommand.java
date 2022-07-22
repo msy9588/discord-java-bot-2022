@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static org.example.Nexon_Probability.probability;
+
 public class SlashCommand extends ListenerAdapter {
     public void onSlashCommand(SlashCommandEvent event) {
         if(event.getName().equals("이벤트목록")) {
@@ -148,9 +150,37 @@ public class SlashCommand extends ListenerAdapter {
                 channel.sendMessageEmbeds(helpBuild.build()).queue();
             });
         } else if(event.getName().equals("도박")) {
-            OptionMapping select = event.getOption("선택");
-            String userSelect = Objects.requireNonNull(select).getAsString();
+            String userSelect = "";
+            int countUser = 0;
+            List<OptionMapping> select = event.getOptions();
+            for (int i = 0; i < select.toArray().length; i++) {
+                if(select.get(i).getName().equals("선택")) {
+                    userSelect = Objects.requireNonNull(select.get(i).getAsString());
+                } else if (select.get(i).getName().equals("횟수")) {
+                    countUser = Integer.parseInt(Objects.requireNonNull(select.get(i).getAsString()));
+                }
+            }
+            String userSelectStr = userSelect;
+            if(userSelect.equals("")) {
+                event.reply("항목을 선택해주세요.").setEphemeral(true).queue();
+            } else if (countUser == 0 || countUser < 0) {
+                event.reply("정확한 횟수를 입력해주세요.").setEphemeral(true).queue();
+            } else {
+                if(userSelect.equals("로얄")) {
+                    userSelect = "RoyalStyle";
+                } else if(userSelect.equals("골드애플")) {
+                    userSelect = "GoldApple";
+                } else if(userSelect.equals("원더베리")) {
+                    userSelect = "WispsWonderBerry";
+                }
+                Nexon_Probability.Probability(userSelect, countUser);
+            }
+            event.reply(userSelectStr+" " + countUser+ "개 결과").setEphemeral(false)
+                    .flatMap(v ->
+                            event.getChannel().sendMessageEmbeds(probability.build())
+                    ).queue();
             System.out.println(userSelect);
+            System.out.println(countUser);
         }
     }
 }

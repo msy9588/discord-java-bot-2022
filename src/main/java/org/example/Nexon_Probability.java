@@ -1,18 +1,20 @@
 package org.example;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import java.util.ArrayList;
+import java.awt.*;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+
 
 public class Nexon_Probability {
+    static EmbedBuilder probability  = new EmbedBuilder();
     public static void main(String[] args) {
-        Probability("RoyalStyle");
+        Probability("RoyalStyle", 10);
     }
-    public static void Probability(String optionStr) {
+    public static void Probability(String optionStr, int count) {
+        probability.clear();
         HashMap<Integer, String> map = new HashMap<Integer, String>();
         int index = 1;
         try {
@@ -37,9 +39,13 @@ public class Nexon_Probability {
                     index++;
                 }
             }
-//            System.out.println(map);
-            int tmpRandom = (int) (Math.random() * 1000);
-            System.out.println(map.get(tmpRandom));
+            for (int i = 0; i < count; i++) {
+                int tmpRandom = (int) (Math.random() * 1000);
+                probability.setThumbnail("https://github.com/dudqls5271/discord-java-bot-2022/blob/master/img/Nexon_Probability.png?raw=true");
+                probability.setColor(Color.MAGENTA);
+                probability.setTitle("결과");
+                probability.appendDescription(map.get(tmpRandom)+"\n");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
