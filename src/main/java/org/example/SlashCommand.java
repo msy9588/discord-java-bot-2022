@@ -179,8 +179,6 @@ public class SlashCommand extends ListenerAdapter {
                     .flatMap(v ->
                             event.getChannel().sendMessageEmbeds(probability.build())
                     ).queue();
-            System.out.println(userSelect);
-            System.out.println(countUser);
         }
     }
 }
