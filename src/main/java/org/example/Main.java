@@ -28,20 +28,18 @@ public class Main extends ListenerAdapter  {
         // / 커멘드1
         jda.addEventListener(new Main());
 
-        jda.getPresence().setActivity(Activity.playing("MapleStory"));
+        jda.getPresence().setActivity(Activity.playing("/농장 기능 오류 수정 "));
 
         // 대화 로고
-//        jda.addEventListener(new Log4());
+        //jda.addEventListener(new Log4());
         // / 커멘드 실행
         jda.addEventListener(new SlashCommand());
          //1초마다 이벤트 불러오기 + 공지 띄우기
-        jda.addEventListener(new EvemtReady());
+//        jda.addEventListener(new EvemtReady());
         // 커멘드
         jda.addEventListener(new fileRead());
         // 공홈 공지
 //        jda.addEventListener(new Notice());
-
-        ArrayList<String> test = new ArrayList<>();
 
         Pages.activate(PaginatorBuilder.createSimplePaginator(jda));
         jda.updateCommands()
@@ -68,15 +66,15 @@ public class Main extends ListenerAdapter  {
                 )
                 .addCommands(new CommandData("help", "도움말")
                 )
-                .addCommands(new CommandData("도박", "메이플 로얄, 골드애플, 원더베리등 시뮬레이터 입니다.")
-                        .addOptions(
-                                new OptionData(OptionType.STRING, "선택", "다음 항목을 선택 해주세요")
-                                        .addChoice("로얄", "로얄")
-                                        .addChoice("골드애플", "골드애플")
-                                        .addChoice("원더베리", "원더베리"),
-                                new OptionData(OptionType.INTEGER, "횟수", "횟수 설정(1 ~ 11)")
-                        )
-                )
+//                .addCommands(new CommandData("도박", "메이플 로얄, 골드애플, 원더베리등 시뮬레이터 입니다.")
+//                        .addOptions(
+//                                new OptionData(OptionType.STRING, "선택", "다음 항목을 선택 해주세요")
+//                                        .addChoice("로얄", "로얄")
+//                                        .addChoice("골드애플", "골드애플")
+//                                        .addChoice("원더베리", "원더베리"),
+//                                new OptionData(OptionType.INTEGER, "횟수", "횟수 설정(1 ~ 11)")
+//                        )
+//                )
                 .queue();
     }
 
