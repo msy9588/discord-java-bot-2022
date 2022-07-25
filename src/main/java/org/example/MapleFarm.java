@@ -2,17 +2,32 @@ package org.example;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.MessageBuilder;
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
-import org.example.RandomUserAgent;
+import java.util.Arrays;
 
 public class MapleFarm {
+    public static void main(String[] args) {
+        printData("쁘띠 은월");
+    }
     static ArrayList<String> userArrayList = new ArrayList<>();
     static ArrayList<String> dayArrayList = new ArrayList<>();
-    static ArrayList<String> numList = new ArrayList<>();
     static StringBuilder farmStringBuliderUser = new StringBuilder();
     static StringBuilder farmStringBuliderDay = new StringBuilder();
     static StringBuilder farmStringBuliderNum = new StringBuilder();
@@ -20,14 +35,12 @@ public class MapleFarm {
     static EmbedBuilder wachanBuild  = new EmbedBuilder();
     public static void mesoKr(String msg) {
         try {
-            System.out.println(RandomUserAgent.getRandomUserAgent());
             userArrayList.clear();
             dayArrayList.clear();
-            numList.clear();
-            String url = "https://meso.kr/monster.php?n="+msg;
-            System.out.println(url);
-            Document doc = Jsoup.connect(url).header("User-Agent", RandomUserAgent.getRandomUserAgent()).timeout(3000).get();
-            System.out.println();
+            String urls = "https://meso.kr/monster.php?n="+msg;
+            System.out.println(urls);
+            Document doc = Jsoup.connect(urls).userAgent("Mozilla/5.0").timeout(10000).get();
+            Thread.sleep(5000);
             int count_DIV1 = doc.select("div[class=\"m-5\"]").get(0).select("table").get(1).select("button").size();
             System.out.println(count_DIV1);
             for (int i = 0; i < count_DIV1; i++) {
@@ -41,20 +54,75 @@ public class MapleFarm {
                     if(i % 5 == 0) {
                         userArrayList.add(String.valueOf(farmStringBuliderUser));
                         dayArrayList.add(String.valueOf(farmStringBuliderDay));
-                        numList.add(String.valueOf(farmStringBuliderNum));
                         farmStringBuliderUser.setLength(0);
                         farmStringBuliderDay.setLength(0);
                         farmStringBuliderNum.setLength(0);
                     }
                 }
+                System.out.println(farmStringBuliderNum);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void getLatestCurrency(String url, String param) {
+        String line;
+        int responseCode = 0;
+        try {
+            URL currencyUrl = new URL(url);
+            HttpURLConnection httpConn = (HttpURLConnection)currencyUrl.openConnection();
+            httpConn.setRequestMethod("POST");
+            httpConn.setDoOutput(true);
+            DataOutputStream wr = new DataOutputStream(httpConn.getOutputStream());
+            wr.write(param.getBytes("utf-8"));
+            wr.flush();
+            wr.close();
+
+            responseCode = httpConn.getResponseCode();
+            System.out.println("responseCode: " + responseCode);
+            StringBuilder sb = new StringBuilder();
+            ArrayList<String> arr = new ArrayList<>();
+            if(responseCode == HttpURLConnection.HTTP_OK) {
+                InputStreamReader inReader = new
+                        InputStreamReader(httpConn.getInputStream(), StandardCharsets.UTF_8);
+                BufferedReader reader = new BufferedReader(inReader);
+                while((line = reader.readLine()) != null) {
+                    sb.append(StringEscapeUtils.unescapeJava(line));
+                }
+                httpConn.disconnect();
+                inReader.close();
+                reader.close();
+            }
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(String.valueOf(sb));
+            String jsonStr = jsonObject.get("farm_list").toString().replace("[","").replace("]","").replace("\"", "");
+
+            String[] jsonArr = jsonStr.split(",");
+
+            System.out.println(Arrays.toString(jsonArr));
+            System.out.println(jsonArr.length);
+            for (int i = 0; i < jsonArr.length; i++) {
+                if(i % 2 == 0) {
+                    System.out.println(jsonArr[i] + ":" + jsonArr[i+1]);
+                    farmStringBuliderUser.append(jsonArr[i]);
+                    userArrayList.add((jsonArr[i]));
+                    dayArrayList.add(jsonArr[i+1]);
+                }
+
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void wachan(String msg) {
+    public static void printData(String msg) {
+        getLatestCurrency("http://wachan.me/farm_read.php","monster="+msg);
+    }
 
+    public static void wachan(String msg) {
         try {
             wachanBuild.clear();
             String url = "http://wachan.me/farm.php";

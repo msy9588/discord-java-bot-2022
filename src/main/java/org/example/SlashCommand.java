@@ -73,7 +73,8 @@ public class SlashCommand extends ListenerAdapter {
             if(event.getOption("몬스터이름")!= null) {
                 OptionMapping monsterName = event.getOption("몬스터이름");
                 String option = Objects.requireNonNull(monsterName).getAsString();
-                MapleFarm.mesoKr(option);
+                MapleFarm app = new MapleFarm();
+                app.printData(option);
 
                 ArrayList<Page> pages = new ArrayList<>();
                 EmbedBuilder mesokrBuild  = new EmbedBuilder();
@@ -82,7 +83,6 @@ public class SlashCommand extends ListenerAdapter {
                     mesokrBuild.setTitle(option+ "에 대한 검색 결과\n" +"Page : " + (i+1) + "/" + MapleFarm.userArrayList.size());
                     mesokrBuild.setColor(Color.MAGENTA);
                     mesokrBuild.addField("농장 이름",MapleFarm.userArrayList.get(i), true);
-                    mesokrBuild.addField("마리수",MapleFarm.numList.get(i), true);
                     mesokrBuild.addField("유호 기간",MapleFarm.dayArrayList.get(i), true);
                     mesokrBuild.setFooter("https://meso.kr", "https://meso.kr/apple-icon-57x57.png");
                     pages.add(new InteractPage(mesokrBuild.build()));

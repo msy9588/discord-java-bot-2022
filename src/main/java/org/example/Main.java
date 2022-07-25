@@ -77,20 +77,5 @@ public class Main extends ListenerAdapter  {
 //                )
                 .queue();
     }
-
-//        jda.updateCommands()
-//                .addCommands(Commands.slash("이벤트목록", "지금 진행중인 이벤트 목록 조회"))
-//                .addCommands(Commands.slash("추옵", "무기 추옵 검색")
-//                        .addOption(OptionType.STRING ,"무기이름", "무기이름")
-//                )
-//                .addCommands(Commands.slash("커맨드", "커맨드 검색")
-//                        .addOption(OptionType.STRING ,"전부", "전부")
-//                        .addOption(OptionType.STRING, "히든", "히든")
-//                )
-//                .addCommands(Commands.slash("농장", "농장 조합 및 보유 농장 검색")
-//                        .addOption(OptionType.STRING ,"몬스터이름", "몬스터이름")
-//                        .addOption(OptionType.STRING ,"조합식", "조합식")
-//                )
-//                .queue();
-//    }
+    
 }
