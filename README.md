@@ -84,7 +84,6 @@ _**버그 제보 환영**_
 |-------------------|-----|
 | MapleGG           | https://maple.gg   |
 | NexonMapleStory   | https://maplestory.nexon.com/Home/Main |
-| meso.kr / 몬스터라이프 검색 | https://meso.kr/.0.29 |
 | 와쨩의 메이플 정보 센터_농장  | http://wachan.me/farm.php |
 
 
